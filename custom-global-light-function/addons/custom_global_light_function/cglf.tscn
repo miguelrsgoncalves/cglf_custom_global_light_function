@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://b8d1f7wfft7ip"]
+[gd_scene load_steps=6 format=3 uid="uid://b8d1f7wfft7ip"]
 
 [ext_resource type="Script" uid="uid://bojfj581b74xs" path="res://addons/custom_global_light_function/cglf.gd" id="1_lu1kq"]
 
@@ -6,9 +6,11 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_muodn"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6xf2b"]
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4lomg"]
 
-[node name="CGLF" type="Control" node_paths=PackedStringArray("_cglf_inc_path_text_window", "_ignore_blacklist_checkbox", "_replace_existing_light_functions_checkbox", "_blacklist", "_blacklist_input")]
+[node name="CGLF" type="Control" node_paths=PackedStringArray("_cglf_inc_path_text_window", "_ignore_blacklist_checkbox", "_replace_existing_light_functions_checkbox", "_shader_type_spatial", "_shader_type_canvas_item", "_shader_type_particles", "_shader_type_sky", "_shader_type_fog", "_blacklist", "_blacklist_input")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -17,8 +19,13 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_lu1kq")
 _cglf_inc_path_text_window = NodePath("VBoxContainer/CGLF Inc File Path/CGLF Inc Path Text Window")
-_ignore_blacklist_checkbox = NodePath("VBoxContainer/Update shaders Window/HFlowContainer/Ignore Blacklist")
-_replace_existing_light_functions_checkbox = NodePath("VBoxContainer/Update shaders Window/HFlowContainer/Replace Existing Light Functions2")
+_ignore_blacklist_checkbox = NodePath("VBoxContainer/Update shaders Window/VBoxContainer/Ignore Blacklist")
+_replace_existing_light_functions_checkbox = NodePath("VBoxContainer/Update shaders Window/VBoxContainer/Replace Existing Light Functions2")
+_shader_type_spatial = NodePath("VBoxContainer/Update shaders Window/VBoxContainer/HBoxContainer/VBoxContainer/Spatial")
+_shader_type_canvas_item = NodePath("VBoxContainer/Update shaders Window/VBoxContainer/HBoxContainer/VBoxContainer/CanvasItem")
+_shader_type_particles = NodePath("VBoxContainer/Update shaders Window/VBoxContainer/HBoxContainer/VBoxContainer/Particles")
+_shader_type_sky = NodePath("VBoxContainer/Update shaders Window/VBoxContainer/HBoxContainer/VBoxContainer/Sky")
+_shader_type_fog = NodePath("VBoxContainer/Update shaders Window/VBoxContainer/HBoxContainer/VBoxContainer/Fog")
 _blacklist = NodePath("VBoxContainer/Blacklist/Blacklist Background/List")
 _blacklist_input = NodePath("VBoxContainer/Blacklist/HBoxContainer/Blacklist Input Shader File Path")
 
@@ -46,7 +53,7 @@ drag_and_drop_selection_enabled = false
 
 [node name="CGLF Inc Path Text Window" type="LineEdit" parent="VBoxContainer/CGLF Inc File Path"]
 layout_mode = 2
-text = "res://addons/custom_global_light_function/cglf.gd"
+text = "res://addons/custom_global_light_function/cglf.gdshaderinc"
 placeholder_text = "CGLF Inc Path"
 emoji_menu_enabled = false
 
@@ -91,20 +98,74 @@ An ERROR is thrown for each shader affected, this error is expected and will not
 text = "Update Shaders"
 text_overrun_behavior = 3
 
-[node name="HFlowContainer" type="VBoxContainer" parent="VBoxContainer/Update shaders Window"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Update shaders Window"]
 layout_mode = 2
 
-[node name="Ignore Blacklist" type="CheckBox" parent="VBoxContainer/Update shaders Window/HFlowContainer"]
+[node name="Ignore Blacklist" type="CheckBox" parent="VBoxContainer/Update shaders Window/VBoxContainer"]
 layout_mode = 2
 tooltip_text = "Ignores Blacklist and updates all shaders in the proejct."
 action_mode = 0
 text = "Ignore Blacklist"
 text_overrun_behavior = 3
 
-[node name="Replace Existing Light Functions2" type="CheckBox" parent="VBoxContainer/Update shaders Window/HFlowContainer"]
+[node name="Replace Existing Light Functions2" type="CheckBox" parent="VBoxContainer/Update shaders Window/VBoxContainer"]
 layout_mode = 2
 action_mode = 0
 text = "Replace Existing Light Functions"
+text_overrun_behavior = 3
+
+[node name="Shader Types TItle" type="RichTextLabel" parent="VBoxContainer/Update shaders Window/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_6xf2b")
+bbcode_enabled = true
+text = "[b]Shader Types"
+fit_content = true
+scroll_active = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Update shaders Window/VBoxContainer"]
+layout_mode = 2
+
+[node name="VSeparator" type="VSeparator" parent="VBoxContainer/Update shaders Window/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(16, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Update shaders Window/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Spatial" type="CheckBox" parent="VBoxContainer/Update shaders Window/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+button_pressed = true
+text = "Spatial"
+text_overrun_behavior = 3
+
+[node name="CanvasItem" type="CheckBox" parent="VBoxContainer/Update shaders Window/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+button_pressed = true
+text = "CanvasItem"
+text_overrun_behavior = 3
+
+[node name="Particles" type="CheckBox" parent="VBoxContainer/Update shaders Window/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+button_pressed = true
+text = "Particles"
+text_overrun_behavior = 3
+
+[node name="Sky" type="CheckBox" parent="VBoxContainer/Update shaders Window/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+button_pressed = true
+text = "Sky"
+text_overrun_behavior = 3
+
+[node name="Fog" type="CheckBox" parent="VBoxContainer/Update shaders Window/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+button_pressed = true
+text = "Fog"
 text_overrun_behavior = 3
 
 [node name="Blacklist" type="VBoxContainer" parent="VBoxContainer"]
@@ -158,7 +219,12 @@ text_overrun_behavior = 3
 [connection signal="pressed" from="VBoxContainer/CGLF Inc File Path/Buttons/Copy Path" to="." method="_cglf_copy_path_pressed"]
 [connection signal="pressed" from="VBoxContainer/CGLF Inc File Path/Copy to Clipboard" to="." method="_cglf_copy_boilerplate"]
 [connection signal="pressed" from="VBoxContainer/Update shaders Window/Update Shaders" to="." method="_update_shaders"]
-[connection signal="pressed" from="VBoxContainer/Update shaders Window/HFlowContainer/Ignore Blacklist" to="." method="_on_ignore_blacklist_pressed"]
-[connection signal="pressed" from="VBoxContainer/Update shaders Window/HFlowContainer/Replace Existing Light Functions2" to="." method="_on_replace_existing_light_functions_pressed"]
+[connection signal="pressed" from="VBoxContainer/Update shaders Window/VBoxContainer/Ignore Blacklist" to="." method="_on_ignore_blacklist_pressed"]
+[connection signal="pressed" from="VBoxContainer/Update shaders Window/VBoxContainer/Replace Existing Light Functions2" to="." method="_on_replace_existing_light_functions_pressed"]
+[connection signal="pressed" from="VBoxContainer/Update shaders Window/VBoxContainer/HBoxContainer/VBoxContainer/Spatial" to="." method="_on_spatial_pressed"]
+[connection signal="pressed" from="VBoxContainer/Update shaders Window/VBoxContainer/HBoxContainer/VBoxContainer/CanvasItem" to="." method="_on_canvas_item_pressed"]
+[connection signal="pressed" from="VBoxContainer/Update shaders Window/VBoxContainer/HBoxContainer/VBoxContainer/Particles" to="." method="_on_particles_pressed"]
+[connection signal="pressed" from="VBoxContainer/Update shaders Window/VBoxContainer/HBoxContainer/VBoxContainer/Sky" to="." method="_on_sky_pressed"]
+[connection signal="pressed" from="VBoxContainer/Update shaders Window/VBoxContainer/HBoxContainer/VBoxContainer/Fog" to="." method="_on_fog_pressed"]
 [connection signal="pressed" from="VBoxContainer/Blacklist/HBoxContainer/Add Blacklist Item" to="." method="_add_blacklist_item"]
 [connection signal="pressed" from="VBoxContainer/Blacklist/Remove Blacklisted Item" to="." method="_remove_blacklisted_item"]

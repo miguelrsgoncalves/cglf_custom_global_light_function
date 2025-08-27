@@ -11,6 +11,11 @@ var _cglf_injection_boiler_plate_ending: String = "\n//CGLF"
 @export var _cglf_inc_path_text_window : LineEdit = null
 @export var _ignore_blacklist_checkbox : CheckBox = null
 @export var _replace_existing_light_functions_checkbox : CheckBox = null
+@export var _shader_type_spatial : CheckBox = null
+@export var _shader_type_canvas_item : CheckBox = null
+@export var _shader_type_particles : CheckBox = null
+@export var _shader_type_sky : CheckBox = null
+@export var _shader_type_fog : CheckBox = null
 @export var _blacklist : ItemList = null
 @export var _blacklist_input : LineEdit = null
 
@@ -20,12 +25,27 @@ func _ready() -> void:
 	EditorInterface.get_file_system_dock().get_child(3).get_child(0).cell_selected.connect(_on_filesystemdock_file_selected)
 
 func setup():
-	if !ProjectSettings.has_setting("rendering/cglf/include_file_path") || !ProjectSettings.has_setting("rendering/cglf/ignore_blacklist") || !ProjectSettings.has_setting("rendering/cglf/replace_existing_light_functions") || !ProjectSettings.has_setting("rendering/cglf/blacklisted_items") : return
+	if (
+			!ProjectSettings.has_setting("rendering/cglf/include_file_path") ||
+			!ProjectSettings.has_setting("rendering/cglf/ignore_blacklist") ||
+			!ProjectSettings.has_setting("rendering/cglf/replace_existing_light_functions") ||
+			!ProjectSettings.has_setting("rendering/cglf/blacklisted_items") ||
+			!ProjectSettings.has_setting("rendering/cglf/shader_types/spatial") ||
+			!ProjectSettings.has_setting("rendering/cglf/shader_types/canvas_item") ||
+			!ProjectSettings.has_setting("rendering/cglf/shader_types/particles") ||
+			!ProjectSettings.has_setting("rendering/cglf/shader_types/sky") ||
+			!ProjectSettings.has_setting("rendering/cglf/shader_types/fog")
+	) : return
 	_cglf_injection_path = ProjectSettings.get_setting("rendering/cglf/include_file_path")
 	_cglf_inc_path_text_window.text = _cglf_injection_path
 	_ignore_blacklist_checkbox.button_pressed = ProjectSettings.get_setting("rendering/cglf/ignore_blacklist")
 	_replace_existing_light_functions_checkbox.button_pressed = ProjectSettings.get_setting("rendering/cglf/replace_existing_light_functions")
 	_blacklisted_files = ProjectSettings.get_setting("rendering/cglf/blacklisted_items")
+	_shader_type_spatial.button_pressed = ProjectSettings.get_setting("rendering/cglf/shader_types/spatial")
+	_shader_type_canvas_item.button_pressed = ProjectSettings.get_setting("rendering/cglf/shader_types/canvas_item")
+	_shader_type_particles.button_pressed = ProjectSettings.get_setting("rendering/cglf/shader_types/particles")
+	_shader_type_sky.button_pressed = ProjectSettings.get_setting("rendering/cglf/shader_types/sky")
+	_shader_type_fog.button_pressed = ProjectSettings.get_setting("rendering/cglf/shader_types/fog")
 	_fill_blacklist_node()
 
 func _update_shaders() -> void:
@@ -62,6 +82,26 @@ func _inject_custom_global_light_function(shader_files: Array, code_injection_pa
 		var shader_file_resource = ResourceLoader.load(shader_file, "Shader", ResourceLoader.CACHE_MODE_IGNORE_DEEP)
 		if shader_file_resource is Shader:
 			var code: String = shader_file_resource.code
+			
+			# Check project settings for this type
+			var shader_type := _get_shader_type(code)
+			var setting_key = "rendering/cglf/shader_types/" + shader_type
+			var enabled = ProjectSettings.has_setting(setting_key) and ProjectSettings.get_setting(setting_key)
+			
+			if !enabled:
+				var boilerplate_regex := RegEx.new()
+				boilerplate_regex.compile(_cglf_injection_boiler_plate + '#include ".*"' + _cglf_injection_boiler_plate_ending)
+				if boilerplate_regex.search(code):
+					code = boilerplate_regex.sub(code, "", true)
+					shader_file_resource.code = code
+					ResourceSaver.save(shader_file_resource, shader_file, ResourceSaver.FLAG_REPLACE_SUBRESOURCE_PATHS)
+					
+					var fs_dock = EditorInterface.get_file_system_dock()
+					fs_dock.file_removed.emit(shader_file)
+					
+					var fs = EditorInterface.get_resource_filesystem()
+					fs.reimport_files([shader_file])
+				continue
 			
 			# Skip file if it has a light func and replace_existing_light_func is OFF
 			var light_func_regex := RegEx.new()
@@ -127,8 +167,7 @@ func _add_blacklist_item():
 		_blacklisted_files.append(_blacklist_input.text)
 		_blacklist_input.clear()
 		_fill_blacklist_node()
-		ProjectSettings.set_setting("rendering/cglf/blacklisted_items", _blacklisted_files)
-		ProjectSettings.save()
+		_save_project_setting("rendering/cglf/blacklisted_items", _blacklisted_files)
 
 func _remove_blacklisted_item():
 	if _blacklist.get_selected_items().size() == 0:
@@ -138,13 +177,24 @@ func _remove_blacklisted_item():
 	var removed_item_path =  _blacklist.get_item_text(removed_item)
 	_blacklist.remove_item(removed_item)
 	_blacklisted_files.remove_at(_blacklisted_files.find(removed_item_path))
-	ProjectSettings.set_setting("rendering/cglf/blacklisted_items", _blacklisted_files)
-	ProjectSettings.save()
+	_save_project_setting("rendering/cglf/blacklisted_items", _blacklisted_files)
 
 func _fill_blacklist_node():
 	_blacklist.clear()
 	for item in _blacklisted_files:
 		_blacklist.add_item(item)
+
+func _save_project_setting(setting: String, value) -> void:
+	ProjectSettings.set_setting(setting, value)
+	ProjectSettings.save()
+
+func _get_shader_type(code: String) -> String:
+	var regex := RegEx.new()
+	regex.compile(r"(?m)^[ \t]*shader_type[ \t]+([a-zA-Z_]+)[ \t]*;")
+	var match = regex.search(code)
+	if match:
+		return match.get_string(1)
+	return ""
 
 func _on_filesystemdock_file_selected():
 	var selected_file_path = EditorInterface.get_selected_paths()[0]
@@ -155,13 +205,25 @@ func _on_filesystemdock_file_selected():
 
 func _on_cglf_inc_path_text_window_text_changed(new_text: String) -> void:
 	_cglf_injection_path = new_text
-	ProjectSettings.set_setting("rendering/cglf/include_file_path", _cglf_injection_path)
-	ProjectSettings.save()
+	_save_project_setting("rendering/cglf/include_file_path", _cglf_injection_path)
 
 func _on_ignore_blacklist_pressed() -> void:
-	ProjectSettings.set_setting("rendering/cglf/ignore_blacklist", _ignore_blacklist_checkbox.button_pressed)
-	ProjectSettings.save()
+	_save_project_setting("rendering/cglf/ignore_blacklist", _ignore_blacklist_checkbox.button_pressed)
 
 func _on_replace_existing_light_functions_pressed() -> void:
-	ProjectSettings.set_setting("rendering/cglf/replace_existing_light_functions", _ignore_blacklist_checkbox.button_pressed)
-	ProjectSettings.save()
+	_save_project_setting("rendering/cglf/replace_existing_light_functions", _ignore_blacklist_checkbox.button_pressed)
+
+func _on_spatial_pressed() -> void:
+	_save_project_setting("rendering/cglf/shader_types/spatial", _shader_type_spatial.button_pressed)
+
+func _on_canvas_item_pressed() -> void:
+	_save_project_setting("rendering/cglf/shader_types/canvas_item", _shader_type_canvas_item.button_pressed)
+
+func _on_particles_pressed() -> void:
+	_save_project_setting("rendering/cglf/shader_types/particles", _shader_type_particles.button_pressed)
+
+func _on_sky_pressed() -> void:
+	_save_project_setting("rendering/cglf/shader_types/sky", _shader_type_sky.button_pressed)
+
+func _on_fog_pressed() -> void:
+	_save_project_setting("rendering/cglf/shader_types/fog", _shader_type_fog.button_pressed)
