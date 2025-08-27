@@ -11,6 +11,7 @@ Provides a manager to define and customize a single centralized custom global li
 ## Features
 - Define a global `light()` function once and reuse it everywhere.
 - Easily managed through the plugin dock.
+- Choose which shader types get affected.
 - Optionally replace existing `light()` functions automatically.
 - Blacklist for shader files not meant to be affected by CGLF.
 - Currently only .gdshader files are supported.
