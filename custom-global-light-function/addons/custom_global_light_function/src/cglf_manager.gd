@@ -34,14 +34,14 @@ func _ready() -> void:
 	_fill_blacklist_node()
 
 func _load_light_functions() -> void:
+	_cglf_light_functions.clear()
+	_light_function_options_button.clear()
 	if FileAccess.file_exists(CGLF_Global_Variables.saved_light_functions_file_path):
 		var file = FileAccess.open(CGLF_Global_Variables.saved_light_functions_file_path, FileAccess.READ)
 		var file_data = file.get_as_text()
 		file.close()
 		var data = JSON.parse_string(file_data)
-		if data:
-			_cglf_light_functions.clear()
-			_light_function_options_button.clear()
+		if data && len(data) > 0:
 			var index = 0
 			for function in data:
 				var _new_light_function := CustomGlobalLightFunction.new().create(function, index)
@@ -49,8 +49,11 @@ func _load_light_functions() -> void:
 				var _name = _new_light_function.inc_file_path.get_file().get_basename()
 				_light_function_options_button.add_item(_name)
 				index += 1
-		_light_function_options_button.disabled = false
-		_dock_views.current_tab = 0
+			_light_function_options_button.disabled = false
+			_dock_views.current_tab = 0
+		else:
+			_light_function_options_button.disabled = true
+			_dock_views.current_tab = 1
 	else:
 		_light_function_options_button.disabled = true
 		_dock_views.current_tab = 1
@@ -69,6 +72,12 @@ func create_light_function(name: String) -> void:
 		"shader_type_fog": _shader_type_fog.button_pressed
 	}, _cglf_light_functions.size())
 	print("CGLF: New Light Function created with name: ", name)
+	_load_light_functions()
+
+func delete_light_function() -> void:
+	var _index: int = _light_function_options_button.get_selected_id()
+	_cglf_light_functions[_index].delete(_index)
+	_cglf_light_functions.remove_at(_index)
 	_load_light_functions()
 
 func _update_shaders() -> void:

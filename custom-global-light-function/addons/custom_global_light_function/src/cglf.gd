@@ -53,7 +53,7 @@ func save(index: int) -> void:
 	var file: FileAccess
 	if not FileAccess.file_exists(CGLF_Global_Variables.saved_light_functions_file_path):
 		file = FileAccess.open(CGLF_Global_Variables.saved_light_functions_file_path, FileAccess.WRITE_READ)
-		file.store_string("[\n]")
+		file.store_string("[]")
 	else:
 		file = FileAccess.open(CGLF_Global_Variables.saved_light_functions_file_path, FileAccess.READ)
 	var file_data = file.get_as_text()
@@ -75,3 +75,15 @@ func load(index: int) -> void:
 	var data = JSON.parse_string(file_data)
 	if data:
 		_from_dict(data[index])
+
+func delete(index: int) -> void:
+	var file = FileAccess.open(CGLF_Global_Variables.saved_light_functions_file_path, FileAccess.READ)
+	var file_data = file.get_as_text()
+	file.close()
+	var data = JSON.parse_string(file_data)
+	print(JSON.stringify(data, "\t", false))
+	data.remove_at(index)
+	print(JSON.stringify(data, "\t", false))
+	file = FileAccess.open(CGLF_Global_Variables.saved_light_functions_file_path, FileAccess.WRITE)
+	file.store_string(JSON.stringify(data, "\t", false))
+	file.close()
