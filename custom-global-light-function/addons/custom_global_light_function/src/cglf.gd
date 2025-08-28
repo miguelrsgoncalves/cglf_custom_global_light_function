@@ -1,3 +1,4 @@
+@tool
 class_name CustomGlobalLightFunction
 extends RefCounted
 
@@ -43,13 +44,13 @@ func from_dict(data: Dictionary) -> void:
 	shader_type_fog = data.get("shader_type_fog", false)
 
 ## Saves this instance into the JSON file by ID, replacing if it exists or adds if not
-func save(index: int, path: String = "res://addons/custom_global_light_function/src/cglf_functions.json") -> void:
+func save(index: int) -> void:
 	var file: FileAccess
-	if not FileAccess.file_exists(path):
-		file = FileAccess.open(path, FileAccess.WRITE_READ)
+	if not FileAccess.file_exists(CGLF_Global_Variables.saved_light_functions_file_path):
+		file = FileAccess.open(CGLF_Global_Variables.saved_light_functions_file_path, FileAccess.WRITE_READ)
 		file.store_string("[\n]")
 	else:
-		file = FileAccess.open(path, FileAccess.READ)
+		file = FileAccess.open(CGLF_Global_Variables.saved_light_functions_file_path, FileAccess.READ)
 	var file_data = file.get_as_text()
 	file.close()
 	var data = JSON.parse_string(file_data)
@@ -57,13 +58,13 @@ func save(index: int, path: String = "res://addons/custom_global_light_function/
 		data[index] = to_dict()
 	else:
 		data.append(to_dict())
-	file = FileAccess.open(path, FileAccess.WRITE)
+	file = FileAccess.open(CGLF_Global_Variables.saved_light_functions_file_path, FileAccess.WRITE)
 	file.store_string(JSON.stringify(data, "\t", false))
 	file.close()
 
 ## Loads an instance from the given index
-func load(index: int, path: String = "res://addons/custom_global_light_function/src/cglf_functions.json") -> void:
-	var file = FileAccess.open(path, FileAccess.READ)
+func load(index: int) -> void:
+	var file = FileAccess.open(CGLF_Global_Variables.saved_light_functions_file_path, FileAccess.READ)
 	var file_data = file.get_as_text()
 	file.close()
 	var data = JSON.parse_string(file_data)

@@ -1,7 +1,7 @@
 @tool
 extends Control
 
-var _cglf_functions: Array[CustomGlobalLightFunction] = []
+var _cglf_light_functions: Array[CustomGlobalLightFunction] = []
 
 var _cglf_injection_path: String = "res://addons/custom_global_light_function/include_files/cglf.gdshaderinc"
 var _blacklisted_files: PackedStringArray = []
@@ -10,16 +10,17 @@ var _cglf_injection_boiler_plate: String = "\n\n//CGLF - Custom Global Light Fun
 var _cglf_injection_boiler_plate_ending: String = "\n//CGLF"
 
 @export_category("Nodes")
-@export var _cglf_inc_path_text_window : LineEdit = null
-@export var _ignore_blacklist_checkbox : CheckBox = null
-@export var _replace_existing_light_functions_checkbox : CheckBox = null
-@export var _shader_type_spatial : CheckBox = null
-@export var _shader_type_canvas_item : CheckBox = null
-@export var _shader_type_particles : CheckBox = null
-@export var _shader_type_sky : CheckBox = null
-@export var _shader_type_fog : CheckBox = null
-@export var _blacklist : ItemList = null
-@export var _blacklist_input : LineEdit = null
+@export var _current_selected_light_function: OptionButton = null
+@export var _cglf_inc_path_text_window: LineEdit = null
+@export var _ignore_blacklist_checkbox: CheckBox = null
+@export var _replace_existing_light_functions_checkbox: CheckBox = null
+@export var _shader_type_spatial: CheckBox = null
+@export var _shader_type_canvas_item: CheckBox = null
+@export var _shader_type_particles: CheckBox = null
+@export var _shader_type_sky: CheckBox = null
+@export var _shader_type_fog: CheckBox = null
+@export var _blacklist: ItemList = null
+@export var _blacklist_input: LineEdit = null
 
 @export_category("View Nodes")
 @export var _light_function_view: Control = null
@@ -31,20 +32,23 @@ func _ready() -> void:
 	EditorInterface.get_file_system_dock().get_child(3).get_child(0).cell_selected.connect(_on_filesystemdock_file_selected)
 	_fill_blacklist_node()
 
-func _load_cglf_functions(path: String = "res://addons/custom_global_light_function/src/cglf_functions.json") -> void:
+func _load_cglf_functions(path: String = CGLF_Global_Variables.saved_light_functions_file_path) -> void:
 	if FileAccess.file_exists(path):
 		var file = FileAccess.open(path, FileAccess.READ)
 		var file_data = file.get_as_text()
 		file.close()
 		var data = JSON.parse_string(file_data)
 		if data:
+			_cglf_light_functions.clear()
 			for function in data:
 				var function_data = function.from_dict()
-				_cglf_functions.append(function_data)
+				_cglf_light_functions.append(function_data)
 		_no_light_function_view.hide()
+		_current_selected_light_function.disabled = false
 		_light_function_view.show()
 	else:
 		_light_function_view.hide()
+		_current_selected_light_function.disabled = true
 		_no_light_function_view.show()
 		pass
 
