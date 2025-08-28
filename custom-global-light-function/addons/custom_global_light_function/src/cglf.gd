@@ -2,8 +2,11 @@
 class_name CustomGlobalLightFunction
 extends RefCounted
 
-## Update Shaders Settings ------------- ##
 ## General
+
+var name: String = ""
+
+## Update Shaders Settings ------------- ##
 var inc_file_path: String = ""
 var blacklisted_items: PackedStringArray = []
 var ignore_blacklist: bool = false
@@ -18,13 +21,18 @@ var shader_type_fog: bool = false
 ##-------------------------------------- ##
 
 func create(dict: Dictionary, index: int) -> CustomGlobalLightFunction:
-	_from_dict(dict)
+	_load_from_dict(dict)
 	save(index)
 	return self
 
+func instantiate(dict: Dictionary, index: int) -> CustomGlobalLightFunction:
+	_load_from_dict(dict)
+	return self
+
 ## Converts class to dictionary to save to JSON file
-func _to_dict() -> Dictionary:
+func _save_to_dict() -> Dictionary:
 	return {
+		"name": name,
 		"inc_file_path": inc_file_path,
 		"blacklisted_items": blacklisted_items,
 		"ignore_blacklist": ignore_blacklist,
@@ -37,7 +45,8 @@ func _to_dict() -> Dictionary:
 	}
 
 ## Saves values from dictionary to class
-func _from_dict(data: Dictionary) -> void:
+func _load_from_dict(data: Dictionary) -> void:	
+	name = data.get("name", "")
 	inc_file_path = data.get("inc_file_path", "")
 	blacklisted_items = data.get("blacklisted_items", PackedStringArray([]))
 	ignore_blacklist = data.get("ignore_blacklist", false)
@@ -60,9 +69,9 @@ func save(index: int) -> void:
 	file.close()
 	var data = JSON.parse_string(file_data)
 	if index >= 0 and index < data.size():
-		data[index] = _to_dict()
+		data[index] = _save_to_dict()
 	else:
-		data.append(_to_dict())
+		data.append(_save_to_dict())
 	file = FileAccess.open(CGLF_Global_Variables.saved_light_functions_file_path, FileAccess.WRITE)
 	file.store_string(JSON.stringify(data, "\t", false))
 	file.close()
@@ -74,16 +83,14 @@ func load(index: int) -> void:
 	file.close()
 	var data = JSON.parse_string(file_data)
 	if data:
-		_from_dict(data[index])
+		_load_from_dict(data[index])
 
 func delete(index: int) -> void:
 	var file = FileAccess.open(CGLF_Global_Variables.saved_light_functions_file_path, FileAccess.READ)
 	var file_data = file.get_as_text()
 	file.close()
 	var data = JSON.parse_string(file_data)
-	print(JSON.stringify(data, "\t", false))
 	data.remove_at(index)
-	print(JSON.stringify(data, "\t", false))
 	file = FileAccess.open(CGLF_Global_Variables.saved_light_functions_file_path, FileAccess.WRITE)
 	file.store_string(JSON.stringify(data, "\t", false))
 	file.close()

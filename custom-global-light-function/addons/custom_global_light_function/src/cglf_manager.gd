@@ -3,7 +3,7 @@ class_name CGLF_Manager
 extends Control
 
 var _cglf_light_functions: Array[CustomGlobalLightFunction] = []
-var _current_light_function: int = 0
+var _current_light_function_index: int = 0
 
 var _cglf_injection_path: String = "res://addons/custom_global_light_function/include_files/cglf.gdshaderinc"
 var _blacklisted_files: PackedStringArray = []
@@ -44,13 +44,13 @@ func _load_light_functions() -> void:
 		if data && len(data) > 0:
 			var index = 0
 			for function in data:
-				var _new_light_function := CustomGlobalLightFunction.new().create(function, index)
-				_cglf_light_functions.append(_new_light_function)
-				var _name = _new_light_function.inc_file_path.get_file().get_basename()
-				_light_function_options_button.add_item(_name)
+				var _light_function := CustomGlobalLightFunction.new().instantiate(function, index)
+				_cglf_light_functions.append(_light_function)
+				_light_function_options_button.add_item(_light_function.name)
 				index += 1
 			_light_function_options_button.disabled = false
 			_dock_views.current_tab = 0
+			_light_function_options_button.selected = _current_light_function_index
 		else:
 			_light_function_options_button.disabled = true
 			_dock_views.current_tab = 1
@@ -60,7 +60,13 @@ func _load_light_functions() -> void:
 		pass
 
 func create_light_function(name: String) -> void:
+	var _split_name = name.split("_")
+	var _split_name_capitulized: PackedStringArray = []
+	for word in _split_name:
+		_split_name_capitulized.append(word.capitalize())
+	var _name = " ".join(_split_name_capitulized)
 	CustomGlobalLightFunction.new().create({
+		"name": _name,
 		"inc_file_path": CGLF_Global_Variables.light_functions_include_files_folder_path + name,
 		"blacklisted_items": _blacklisted_files,
 		"ignore_blacklist": _ignore_blacklist_checkbox.button_pressed,
@@ -71,14 +77,18 @@ func create_light_function(name: String) -> void:
 		"shader_type_sky": _shader_type_sky.button_pressed,
 		"shader_type_fog": _shader_type_fog.button_pressed
 	}, _cglf_light_functions.size())
-	print("CGLF: New Light Function created with name: ", name)
+	print("CGLF: New Light Function created with name: ", _name)
+	_current_light_function_index = _light_function_options_button.item_count
 	_load_light_functions()
 
 func delete_light_function() -> void:
-	var _index: int = _light_function_options_button.get_selected_id()
-	_cglf_light_functions[_index].delete(_index)
-	_cglf_light_functions.remove_at(_index)
-	_load_light_functions()
+	if _cglf_light_functions.size() > 0:
+		var _index: int = _light_function_options_button.get_selected_id()
+		print("CGLF: Deleted Light Function with name: ", _cglf_light_functions[_index].name)
+		_cglf_light_functions[_index].delete(_index)
+		_cglf_light_functions.remove_at(_index)
+		_current_light_function_index = clampi(_index - 1, 0, INF as int)
+		_load_light_functions()
 
 func _update_shaders() -> void:
 	var shader_files = _find_shader_files("res://")
