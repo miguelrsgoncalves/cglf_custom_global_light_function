@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b8d1f7wfft7ip"]
+[gd_scene load_steps=18 format=3 uid="uid://b8d1f7wfft7ip"]
 
 [ext_resource type="Script" uid="uid://bojfj581b74xs" path="res://addons/custom_global_light_function/src/cglf_manager.gd" id="1_avgqn"]
 [ext_resource type="Script" uid="uid://mi1jbn4hrph" path="res://addons/custom_global_light_function/src/buttons/add_light_function_button.gd" id="2_6jpod"]
@@ -7,7 +7,7 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5geas"]
 
-[sub_resource type="Image" id="Image_5geas"]
+[sub_resource type="Image" id="Image_relkf"]
 data = {
 "data": PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 0, 0, 0, 0, 225, 225, 225, 127, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 0, 0, 0, 0, 224, 224, 224, 255, 225, 225, 225, 127, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 0, 0, 0, 0, 224, 224, 224, 255, 224, 224, 224, 255, 225, 225, 225, 127, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 0, 0, 0, 0, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 225, 225, 225, 127, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 0, 0, 0, 0, 115, 242, 128, 255, 115, 242, 128, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 115, 242, 128, 255, 115, 242, 128, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 0, 0, 0, 0, 115, 242, 128, 255, 115, 242, 128, 255, 115, 242, 128, 255, 115, 242, 128, 255, 115, 242, 128, 255, 115, 242, 128, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 0, 0, 0, 0, 115, 242, 128, 255, 115, 242, 128, 255, 115, 242, 128, 255, 115, 242, 128, 255, 115, 242, 128, 255, 115, 242, 128, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 115, 242, 128, 255, 115, 242, 128, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 0, 0, 0, 0, 115, 242, 128, 255, 115, 242, 128, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 "format": "RGBA8",
@@ -16,12 +16,12 @@ data = {
 "width": 16
 }
 
-[sub_resource type="ImageTexture" id="ImageTexture_relkf"]
-image = SubResource("Image_5geas")
+[sub_resource type="ImageTexture" id="ImageTexture_ph7ee"]
+image = SubResource("Image_relkf")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ph7ee"]
 
-[sub_resource type="Image" id="Image_relkf"]
+[sub_resource type="Image" id="Image_72etw"]
 data = {
 "data": PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 255, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 255, 224, 224, 224, 255, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 255, 224, 224, 224, 255, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 255, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 255, 224, 224, 224, 255, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 255, 224, 224, 224, 255, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 255, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 255, 224, 224, 224, 255, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 255, 224, 224, 224, 255, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 255, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 255, 224, 224, 224, 255, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 255, 224, 224, 224, 255, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 255, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 255, 224, 224, 224, 255, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 255, 224, 224, 224, 255, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 255, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 255, 224, 224, 224, 255, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 255, 224, 224, 224, 255, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 227, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 225, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 73, 224, 224, 224, 226, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 225, 226, 226, 226, 70, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 "format": "RGBA8",
@@ -30,8 +30,10 @@ data = {
 "width": 16
 }
 
-[sub_resource type="ImageTexture" id="ImageTexture_72etw"]
-image = SubResource("Image_relkf")
+[sub_resource type="ImageTexture" id="ImageTexture_emjnd"]
+image = SubResource("Image_72etw")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_72etw"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_relkf"]
 
@@ -45,7 +47,7 @@ image = SubResource("Image_relkf")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ftocf"]
 
-[node name="CGLF" type="Control" node_paths=PackedStringArray("_current_selected_light_function", "_cglf_inc_path_text_window", "_ignore_blacklist_checkbox", "_replace_existing_light_functions_checkbox", "_shader_type_spatial", "_shader_type_canvas_item", "_shader_type_particles", "_shader_type_sky", "_shader_type_fog", "_blacklist", "_blacklist_input", "_light_function_view", "_no_light_function_view")]
+[node name="CGLF" type="Control" node_paths=PackedStringArray("_light_function_options_button", "_cglf_inc_path_text_window", "_ignore_blacklist_checkbox", "_replace_existing_light_functions_checkbox", "_shader_type_spatial", "_shader_type_canvas_item", "_shader_type_particles", "_shader_type_sky", "_shader_type_fog", "_blacklist", "_blacklist_input", "_light_function_view", "_no_light_function_view")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -53,7 +55,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_avgqn")
-_current_selected_light_function = NodePath("Dock/Light Function Selector Header/VBoxContainer/HBoxContainer/Current Selected Light Function Options")
+_light_function_options_button = NodePath("Dock/Light Function Selector Header/VBoxContainer/HBoxContainer/Light Function Options Button")
 _cglf_inc_path_text_window = NodePath("Dock/Light Function View/VBoxContainer/CGLF Inc File Path/CGLF Inc Path Text Window")
 _ignore_blacklist_checkbox = NodePath("Dock/Light Function View/VBoxContainer/Update shaders Window/VBoxContainer/Ignore Blacklist")
 _replace_existing_light_functions_checkbox = NodePath("Dock/Light Function View/VBoxContainer/Update shaders Window/VBoxContainer/Replace Existing Light Functions2")
@@ -86,17 +88,19 @@ layout_mode = 2
 [node name="HBoxContainer" type="HBoxContainer" parent="Dock/Light Function Selector Header/VBoxContainer"]
 layout_mode = 2
 
-[node name="Current Selected Light Function Options" type="OptionButton" parent="Dock/Light Function Selector Header/VBoxContainer/HBoxContainer"]
+[node name="Light Function Options Button" type="OptionButton" parent="Dock/Light Function Selector Header/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "Currently Selected Light Function"
 disabled = true
+text_overrun_behavior = 3
+clip_text = true
 fit_to_longest_item = false
 
 [node name="Add Light Function Button" type="Button" parent="Dock/Light Function Selector Header/VBoxContainer/HBoxContainer" node_paths=PackedStringArray("_popup")]
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxEmpty_5geas")
-icon = SubResource("ImageTexture_relkf")
+icon = SubResource("ImageTexture_ph7ee")
 script = ExtResource("2_6jpod")
 _popup = NodePath("../Add Light Function Popup")
 
@@ -104,7 +108,7 @@ _popup = NodePath("../Add Light Function Popup")
 layout_mode = 2
 tooltip_text = "Delete current selected Light Function"
 theme_override_styles/normal = SubResource("StyleBoxEmpty_ph7ee")
-icon = SubResource("ImageTexture_72etw")
+icon = SubResource("ImageTexture_emjnd")
 script = ExtResource("3_5geas")
 
 [node name="AcceptDialog" type="AcceptDialog" parent="Dock/Light Function Selector Header/VBoxContainer/HBoxContainer/Delete Light Function Button"]
@@ -113,54 +117,64 @@ size = Vector2i(418, 100)
 ok_button_text = "Delete"
 dialog_text = "You really wish to delete the current Light Function?"
 
-[node name="Add Light Function Popup" type="PopupPanel" parent="Dock/Light Function Selector Header/VBoxContainer/HBoxContainer" node_paths=PackedStringArray("_light_function_name_input", "_create_light_function_button")]
-title = "Create new Light Function"
+[node name="Add Light Function Popup" type="PopupPanel" parent="Dock/Light Function Selector Header/VBoxContainer/HBoxContainer" node_paths=PackedStringArray("CGLF", "_light_function_name_input", "_create_light_function_button")]
+title = "CGLF: Create new Light Function"
 initial_position = 5
-size = Vector2i(500, 101)
+size = Vector2i(500, 102)
+borderless = false
 script = ExtResource("4_relkf")
+CGLF = NodePath("../../../../..")
 _light_function_name_input = NodePath("VBoxContainer/Light Function Name Input")
 _create_light_function_button = NodePath("VBoxContainer/HBoxContainer/Create Light Function Button")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Dock/Light Function Selector Header/VBoxContainer/HBoxContainer/Add Light Function Popup"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
 offset_left = 4.0
 offset_top = 4.0
-offset_right = -4.0
-offset_bottom = -4.0
+offset_right = 496.0
+offset_bottom = 98.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Title" type="RichTextLabel" parent="Dock/Light Function Selector Header/VBoxContainer/HBoxContainer/Add Light Function Popup/VBoxContainer"]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxEmpty_relkf")
-bbcode_enabled = true
-text = "[b]Create new Light Function"
-fit_content = true
-scroll_active = false
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="Light Function Name Input" type="LineEdit" parent="Dock/Light Function Selector Header/VBoxContainer/HBoxContainer/Add Light Function Popup/VBoxContainer"]
 layout_mode = 2
 placeholder_text = "light_function_name"
+keep_editing_on_text_submit = true
 emoji_menu_enabled = false
 clear_button_enabled = true
+
+[node name="HSeparator" type="HSeparator" parent="Dock/Light Function Selector Header/VBoxContainer/HBoxContainer/Add Light Function Popup/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+theme_override_styles/separator = SubResource("StyleBoxEmpty_72etw")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Dock/Light Function Selector Header/VBoxContainer/HBoxContainer/Add Light Function Popup/VBoxContainer"]
 layout_mode = 2
 
-[node name="Cancel Light Function Creation Button" type="Button" parent="Dock/Light Function Selector Header/VBoxContainer/HBoxContainer/Add Light Function Popup/VBoxContainer/HBoxContainer"]
+[node name="VSeparator" type="VSeparator" parent="Dock/Light Function Selector Header/VBoxContainer/HBoxContainer/Add Light Function Popup/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Cancel"
+theme_override_styles/separator = SubResource("StyleBoxEmpty_relkf")
 
 [node name="Create Light Function Button" type="Button" parent="Dock/Light Function Selector Header/VBoxContainer/HBoxContainer/Add Light Function Popup/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 disabled = true
 text = "Create"
+
+[node name="VSeparator2" type="VSeparator" parent="Dock/Light Function Selector Header/VBoxContainer/HBoxContainer/Add Light Function Popup/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_relkf")
+
+[node name="Cancel Light Function Creation Button" type="Button" parent="Dock/Light Function Selector Header/VBoxContainer/HBoxContainer/Add Light Function Popup/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Cancel"
+
+[node name="VSeparator3" type="VSeparator" parent="Dock/Light Function Selector Header/VBoxContainer/HBoxContainer/Add Light Function Popup/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_relkf")
 
 [node name="Light Function View" type="PanelContainer" parent="Dock"]
 visible = false
@@ -365,8 +379,8 @@ vertical_alignment = 1
 [connection signal="popup_hide" from="Dock/Light Function Selector Header/VBoxContainer/HBoxContainer/Add Light Function Popup" to="Dock/Light Function Selector Header/VBoxContainer/HBoxContainer/Add Light Function Popup" method="_on_popup_hide"]
 [connection signal="text_changed" from="Dock/Light Function Selector Header/VBoxContainer/HBoxContainer/Add Light Function Popup/VBoxContainer/Light Function Name Input" to="Dock/Light Function Selector Header/VBoxContainer/HBoxContainer/Add Light Function Popup" method="_on_light_function_name_input_text_changed"]
 [connection signal="text_submitted" from="Dock/Light Function Selector Header/VBoxContainer/HBoxContainer/Add Light Function Popup/VBoxContainer/Light Function Name Input" to="Dock/Light Function Selector Header/VBoxContainer/HBoxContainer/Add Light Function Popup" method="_on_light_function_name_input_text_submitted"]
-[connection signal="pressed" from="Dock/Light Function Selector Header/VBoxContainer/HBoxContainer/Add Light Function Popup/VBoxContainer/HBoxContainer/Cancel Light Function Creation Button" to="Dock/Light Function Selector Header/VBoxContainer/HBoxContainer/Add Light Function Popup" method="_on_cancel_light_function_creation_button_pressed"]
 [connection signal="pressed" from="Dock/Light Function Selector Header/VBoxContainer/HBoxContainer/Add Light Function Popup/VBoxContainer/HBoxContainer/Create Light Function Button" to="Dock/Light Function Selector Header/VBoxContainer/HBoxContainer/Add Light Function Popup" method="_on_create_light_function_button_pressed"]
+[connection signal="pressed" from="Dock/Light Function Selector Header/VBoxContainer/HBoxContainer/Add Light Function Popup/VBoxContainer/HBoxContainer/Cancel Light Function Creation Button" to="Dock/Light Function Selector Header/VBoxContainer/HBoxContainer/Add Light Function Popup" method="_on_cancel_light_function_creation_button_pressed"]
 [connection signal="text_changed" from="Dock/Light Function View/VBoxContainer/CGLF Inc File Path/CGLF Inc Path Text Window" to="." method="_on_cglf_inc_path_text_window_text_changed"]
 [connection signal="pressed" from="Dock/Light Function View/VBoxContainer/CGLF Inc File Path/Buttons/Open File" to="." method="_open_cglf_inc"]
 [connection signal="pressed" from="Dock/Light Function View/VBoxContainer/CGLF Inc File Path/Buttons/Copy Path" to="." method="_cglf_copy_path_pressed"]

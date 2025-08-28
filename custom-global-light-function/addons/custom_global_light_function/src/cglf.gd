@@ -17,8 +17,13 @@ var shader_type_sky: bool = false
 var shader_type_fog: bool = false
 ##-------------------------------------- ##
 
+func create(dict: Dictionary, index: int) -> CustomGlobalLightFunction:
+	_from_dict(dict)
+	save(index)
+	return self
+
 ## Converts class to dictionary to save to JSON file
-func to_dict() -> Dictionary:
+func _to_dict() -> Dictionary:
 	return {
 		"inc_file_path": inc_file_path,
 		"blacklisted_items": blacklisted_items,
@@ -32,7 +37,7 @@ func to_dict() -> Dictionary:
 	}
 
 ## Saves values from dictionary to class
-func from_dict(data: Dictionary) -> void:
+func _from_dict(data: Dictionary) -> void:
 	inc_file_path = data.get("inc_file_path", "")
 	blacklisted_items = data.get("blacklisted_items", PackedStringArray([]))
 	ignore_blacklist = data.get("ignore_blacklist", false)
@@ -55,9 +60,9 @@ func save(index: int) -> void:
 	file.close()
 	var data = JSON.parse_string(file_data)
 	if index >= 0 and index < data.size():
-		data[index] = to_dict()
+		data[index] = _to_dict()
 	else:
-		data.append(to_dict())
+		data.append(_to_dict())
 	file = FileAccess.open(CGLF_Global_Variables.saved_light_functions_file_path, FileAccess.WRITE)
 	file.store_string(JSON.stringify(data, "\t", false))
 	file.close()
@@ -69,4 +74,4 @@ func load(index: int) -> void:
 	file.close()
 	var data = JSON.parse_string(file_data)
 	if data:
-		from_dict(data[index])
+		_from_dict(data[index])

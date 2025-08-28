@@ -1,7 +1,9 @@
 @tool
+class_name CGLF_Manager
 extends Control
 
 var _cglf_light_functions: Array[CustomGlobalLightFunction] = []
+var _current_light_function: int = 0
 
 var _cglf_injection_path: String = "res://addons/custom_global_light_function/include_files/cglf.gdshaderinc"
 var _blacklisted_files: PackedStringArray = []
@@ -10,7 +12,7 @@ var _cglf_injection_boiler_plate: String = "\n\n//CGLF - Custom Global Light Fun
 var _cglf_injection_boiler_plate_ending: String = "\n//CGLF"
 
 @export_category("Nodes")
-@export var _current_selected_light_function: OptionButton = null
+@export var _light_function_options_button: OptionButton = null
 @export var _cglf_inc_path_text_window: LineEdit = null
 @export var _ignore_blacklist_checkbox: CheckBox = null
 @export var _replace_existing_light_functions_checkbox: CheckBox = null
@@ -27,30 +29,49 @@ var _cglf_injection_boiler_plate_ending: String = "\n//CGLF"
 @export var _no_light_function_view: Control = null
 
 func _ready() -> void:
-	_load_cglf_functions()
+	_load_light_functions()
 	# LOOKOUT FOR CHANGE PULL REQUEST https://github.com/godotengine/godot/pull/107275 TO SEE IF THEY EXPOSE THE SIGNAL WRITTEN BELLOW
 	EditorInterface.get_file_system_dock().get_child(3).get_child(0).cell_selected.connect(_on_filesystemdock_file_selected)
 	_fill_blacklist_node()
 
-func _load_cglf_functions(path: String = CGLF_Global_Variables.saved_light_functions_file_path) -> void:
-	if FileAccess.file_exists(path):
-		var file = FileAccess.open(path, FileAccess.READ)
+func _load_light_functions() -> void:
+	if FileAccess.file_exists(CGLF_Global_Variables.saved_light_functions_file_path):
+		var file = FileAccess.open(CGLF_Global_Variables.saved_light_functions_file_path, FileAccess.READ)
 		var file_data = file.get_as_text()
 		file.close()
 		var data = JSON.parse_string(file_data)
 		if data:
 			_cglf_light_functions.clear()
+			_light_function_options_button.clear()
+			var index = 0
 			for function in data:
-				var function_data = function.from_dict()
-				_cglf_light_functions.append(function_data)
+				var _new_light_function := CustomGlobalLightFunction.new().create(function, index)
+				_cglf_light_functions.append(_new_light_function)
+				_light_function_options_button.add_item(_new_light_function.inc_file_path)
+				index += 1
 		_no_light_function_view.hide()
-		_current_selected_light_function.disabled = false
+		_light_function_options_button.disabled = false
 		_light_function_view.show()
 	else:
 		_light_function_view.hide()
-		_current_selected_light_function.disabled = true
+		_light_function_options_button.disabled = true
 		_no_light_function_view.show()
 		pass
+
+func create_light_function(name: String) -> void:
+	CustomGlobalLightFunction.new().create({
+		"inc_file_path": CGLF_Global_Variables.light_functions_include_files_folder_path + name,
+		"blacklisted_items": _blacklisted_files,
+		"ignore_blacklist": _ignore_blacklist_checkbox.button_pressed,
+		"replace_existing_light_functions": _replace_existing_light_functions_checkbox.button_pressed,
+		"shader_type_spatial": _shader_type_spatial.button_pressed,
+		"shader_type_canvas_item": _shader_type_canvas_item.button_pressed,
+		"shader_type_particles": _shader_type_particles.button_pressed,
+		"shader_type_sky": _shader_type_sky.button_pressed,
+		"shader_type_fog": _shader_type_fog.button_pressed
+	}, _cglf_light_functions.size())
+	_load_light_functions()
+	print("CGLF: New Light Function created with name: ", name)
 
 func _update_shaders() -> void:
 	var shader_files = _find_shader_files("res://")
