@@ -25,8 +25,7 @@ var _cglf_injection_boiler_plate_ending: String = "\n//CGLF"
 @export var _blacklist_input: LineEdit = null
 
 @export_category("View Nodes")
-@export var _light_function_view: Control = null
-@export var _no_light_function_view: Control = null
+@export var _dock_views: TabContainer = null
 
 func _ready() -> void:
 	_load_light_functions()
@@ -47,15 +46,14 @@ func _load_light_functions() -> void:
 			for function in data:
 				var _new_light_function := CustomGlobalLightFunction.new().create(function, index)
 				_cglf_light_functions.append(_new_light_function)
-				_light_function_options_button.add_item(_new_light_function.inc_file_path)
+				var _name = _new_light_function.inc_file_path.get_file().get_basename()
+				_light_function_options_button.add_item(_name)
 				index += 1
-		_no_light_function_view.hide()
 		_light_function_options_button.disabled = false
-		_light_function_view.show()
+		_dock_views.current_tab = 0
 	else:
-		_light_function_view.hide()
 		_light_function_options_button.disabled = true
-		_no_light_function_view.show()
+		_dock_views.current_tab = 1
 		pass
 
 func create_light_function(name: String) -> void:
@@ -70,8 +68,8 @@ func create_light_function(name: String) -> void:
 		"shader_type_sky": _shader_type_sky.button_pressed,
 		"shader_type_fog": _shader_type_fog.button_pressed
 	}, _cglf_light_functions.size())
-	_load_light_functions()
 	print("CGLF: New Light Function created with name: ", name)
+	_load_light_functions()
 
 func _update_shaders() -> void:
 	var shader_files = _find_shader_files("res://")

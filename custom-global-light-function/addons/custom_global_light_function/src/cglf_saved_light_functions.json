@@ -9,5 +9,115 @@
 		"shader_type_particles": false,
 		"shader_type_sky": false,
 		"shader_type_fog": false
+	},
+	{
+		"inc_file_path": "res://addons/custom_global_light_function/include_files/asdasd",
+		"blacklisted_items": [],
+		"ignore_blacklist": false,
+		"replace_existing_light_functions": false,
+		"shader_type_spatial": true,
+		"shader_type_canvas_item": false,
+		"shader_type_particles": false,
+		"shader_type_sky": false,
+		"shader_type_fog": false
+	},
+	{
+		"inc_file_path": "res://addons/custom_global_light_function/include_files/asdasdad",
+		"blacklisted_items": [],
+		"ignore_blacklist": false,
+		"replace_existing_light_functions": false,
+		"shader_type_spatial": true,
+		"shader_type_canvas_item": false,
+		"shader_type_particles": false,
+		"shader_type_sky": false,
+		"shader_type_fog": false
+	},
+	{
+		"inc_file_path": "res://addons/custom_global_light_function/include_files/asdasd",
+		"blacklisted_items": [],
+		"ignore_blacklist": false,
+		"replace_existing_light_functions": false,
+		"shader_type_spatial": true,
+		"shader_type_canvas_item": false,
+		"shader_type_particles": false,
+		"shader_type_sky": false,
+		"shader_type_fog": false
+	},
+	{
+		"inc_file_path": "res://addons/custom_global_light_function/include_files/Ola",
+		"blacklisted_items": [],
+		"ignore_blacklist": false,
+		"replace_existing_light_functions": false,
+		"shader_type_spatial": true,
+		"shader_type_canvas_item": false,
+		"shader_type_particles": false,
+		"shader_type_sky": false,
+		"shader_type_fog": false
+	},
+	{
+		"inc_file_path": "res://addons/custom_global_light_function/include_files/asd",
+		"blacklisted_items": [],
+		"ignore_blacklist": false,
+		"replace_existing_light_functions": false,
+		"shader_type_spatial": true,
+		"shader_type_canvas_item": false,
+		"shader_type_particles": false,
+		"shader_type_sky": false,
+		"shader_type_fog": false
+	},
+	{
+		"inc_file_path": "res://addons/custom_global_light_function/include_files/asd",
+		"blacklisted_items": [],
+		"ignore_blacklist": false,
+		"replace_existing_light_functions": false,
+		"shader_type_spatial": true,
+		"shader_type_canvas_item": false,
+		"shader_type_particles": false,
+		"shader_type_sky": false,
+		"shader_type_fog": false
+	},
+	{
+		"inc_file_path": "res://addons/custom_global_light_function/include_files/asd",
+		"blacklisted_items": [],
+		"ignore_blacklist": false,
+		"replace_existing_light_functions": false,
+		"shader_type_spatial": true,
+		"shader_type_canvas_item": false,
+		"shader_type_particles": false,
+		"shader_type_sky": false,
+		"shader_type_fog": false
+	},
+	{
+		"inc_file_path": "res://addons/custom_global_light_function/include_files/asdasdsadasd",
+		"blacklisted_items": [],
+		"ignore_blacklist": false,
+		"replace_existing_light_functions": false,
+		"shader_type_spatial": true,
+		"shader_type_canvas_item": false,
+		"shader_type_particles": false,
+		"shader_type_sky": false,
+		"shader_type_fog": false
+	},
+	{
+		"inc_file_path": "res://addons/custom_global_light_function/include_files/dvasvffadfv",
+		"blacklisted_items": [],
+		"ignore_blacklist": false,
+		"replace_existing_light_functions": false,
+		"shader_type_spatial": true,
+		"shader_type_canvas_item": false,
+		"shader_type_particles": false,
+		"shader_type_sky": false,
+		"shader_type_fog": false
+	},
+	{
+		"inc_file_path": "res://addons/custom_global_light_function/include_files/adfbdfbb",
+		"blacklisted_items": [],
+		"ignore_blacklist": false,
+		"replace_existing_light_functions": false,
+		"shader_type_spatial": true,
+		"shader_type_canvas_item": false,
+		"shader_type_particles": false,
+		"shader_type_sky": false,
+		"shader_type_fog": false
 	}
 ]
