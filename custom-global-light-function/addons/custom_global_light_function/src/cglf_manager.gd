@@ -1,7 +1,9 @@
 @tool
 extends Control
 
-var _cglf_injection_path: String = "res://addons/custom_global_light_function/cglf.gdshaderinc"
+var _cglf_functions: Array[CustomGlobalLightFunction] = []
+
+var _cglf_injection_path: String = "res://addons/custom_global_light_function/include_files/cglf.gdshaderinc"
 var _blacklisted_files: PackedStringArray = []
 
 var _cglf_injection_boiler_plate: String = "\n\n//CGLF - Custom Global Light Function\n"
@@ -20,33 +22,24 @@ var _cglf_injection_boiler_plate_ending: String = "\n//CGLF"
 @export var _blacklist_input : LineEdit = null
 
 func _ready() -> void:
-	setup()
+	_load_cglf_functions()
 	# LOOKOUT FOR CHANGE PULL REQUEST https://github.com/godotengine/godot/pull/107275 TO SEE IF THEY EXPOSE THE SIGNAL WRITTEN BELLOW
 	EditorInterface.get_file_system_dock().get_child(3).get_child(0).cell_selected.connect(_on_filesystemdock_file_selected)
-
-func setup():
-	if (
-			!ProjectSettings.has_setting("rendering/cglf/include_file_path") ||
-			!ProjectSettings.has_setting("rendering/cglf/ignore_blacklist") ||
-			!ProjectSettings.has_setting("rendering/cglf/replace_existing_light_functions") ||
-			!ProjectSettings.has_setting("rendering/cglf/blacklisted_items") ||
-			!ProjectSettings.has_setting("rendering/cglf/shader_types/spatial") ||
-			!ProjectSettings.has_setting("rendering/cglf/shader_types/canvas_item") ||
-			!ProjectSettings.has_setting("rendering/cglf/shader_types/particles") ||
-			!ProjectSettings.has_setting("rendering/cglf/shader_types/sky") ||
-			!ProjectSettings.has_setting("rendering/cglf/shader_types/fog")
-	) : return
-	_cglf_injection_path = ProjectSettings.get_setting("rendering/cglf/include_file_path")
-	_cglf_inc_path_text_window.text = _cglf_injection_path
-	_ignore_blacklist_checkbox.button_pressed = ProjectSettings.get_setting("rendering/cglf/ignore_blacklist")
-	_replace_existing_light_functions_checkbox.button_pressed = ProjectSettings.get_setting("rendering/cglf/replace_existing_light_functions")
-	_blacklisted_files = ProjectSettings.get_setting("rendering/cglf/blacklisted_items")
-	_shader_type_spatial.button_pressed = ProjectSettings.get_setting("rendering/cglf/shader_types/spatial")
-	_shader_type_canvas_item.button_pressed = ProjectSettings.get_setting("rendering/cglf/shader_types/canvas_item")
-	_shader_type_particles.button_pressed = ProjectSettings.get_setting("rendering/cglf/shader_types/particles")
-	_shader_type_sky.button_pressed = ProjectSettings.get_setting("rendering/cglf/shader_types/sky")
-	_shader_type_fog.button_pressed = ProjectSettings.get_setting("rendering/cglf/shader_types/fog")
 	_fill_blacklist_node()
+
+func _load_cglf_functions(path: String = "res://addons/custom_global_light_function/src/cglf_functions.json") -> void:
+	if FileAccess.file_exists(path):
+		var file = FileAccess.open(path, FileAccess.READ)
+		var file_data = file.get_as_text()
+		file.close()
+		var data = JSON.parse_string(file_data)
+		if data:
+			for function in data:
+				var function_data = function.from_dict()
+				_cglf_functions.append(function_data)
+	else:
+		# MAKE IT SO IT SHOWS NO UI
+		pass
 
 func _update_shaders() -> void:
 	var shader_files = _find_shader_files("res://")

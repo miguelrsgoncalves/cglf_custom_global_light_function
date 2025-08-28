@@ -1,6 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://b8d1f7wfft7ip"]
+[gd_scene load_steps=7 format=3 uid="uid://b8d1f7wfft7ip"]
 
-[ext_resource type="Script" uid="uid://bojfj581b74xs" path="res://addons/custom_global_light_function/cglf.gd" id="1_lu1kq"]
+[ext_resource type="Script" uid="uid://bojfj581b74xs" path="res://addons/custom_global_light_function/src/cglf_manager.gd" id="1_avgqn"]
+
+[sub_resource type="GDScript" id="GDScript_ftocf"]
+script/source = "class_name CGLF_Enums
+
+static var functions_file_path = \"res://addons/custom_global_light_function/src/cglf_functions.json\"
+"
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lu1kq"]
 
@@ -17,7 +23,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_lu1kq")
+script = ExtResource("1_avgqn")
 _cglf_inc_path_text_window = NodePath("VBoxContainer/CGLF Inc File Path/CGLF Inc Path Text Window")
 _ignore_blacklist_checkbox = NodePath("VBoxContainer/Update shaders Window/VBoxContainer/Ignore Blacklist")
 _replace_existing_light_functions_checkbox = NodePath("VBoxContainer/Update shaders Window/VBoxContainer/Replace Existing Light Functions2")
@@ -28,6 +34,9 @@ _shader_type_sky = NodePath("VBoxContainer/Update shaders Window/VBoxContainer/H
 _shader_type_fog = NodePath("VBoxContainer/Update shaders Window/VBoxContainer/HBoxContainer/VBoxContainer/Fog")
 _blacklist = NodePath("VBoxContainer/Blacklist/Blacklist Background/List")
 _blacklist_input = NodePath("VBoxContainer/Blacklist/HBoxContainer/Blacklist Input Shader File Path")
+
+[node name="Enums" type="Node" parent="."]
+script = SubResource("GDScript_ftocf")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -143,28 +152,24 @@ text_overrun_behavior = 3
 [node name="CanvasItem" type="CheckBox" parent="VBoxContainer/Update shaders Window/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-button_pressed = true
 text = "CanvasItem"
 text_overrun_behavior = 3
 
 [node name="Particles" type="CheckBox" parent="VBoxContainer/Update shaders Window/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-button_pressed = true
 text = "Particles"
 text_overrun_behavior = 3
 
 [node name="Sky" type="CheckBox" parent="VBoxContainer/Update shaders Window/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-button_pressed = true
 text = "Sky"
 text_overrun_behavior = 3
 
 [node name="Fog" type="CheckBox" parent="VBoxContainer/Update shaders Window/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-button_pressed = true
 text = "Fog"
 text_overrun_behavior = 3
 
