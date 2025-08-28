@@ -21,6 +21,10 @@ var _cglf_injection_boiler_plate_ending: String = "\n//CGLF"
 @export var _blacklist : ItemList = null
 @export var _blacklist_input : LineEdit = null
 
+@export_category("View Nodes")
+@export var _light_function_view: Control = null
+@export var _no_light_function_view: Control = null
+
 func _ready() -> void:
 	_load_cglf_functions()
 	# LOOKOUT FOR CHANGE PULL REQUEST https://github.com/godotengine/godot/pull/107275 TO SEE IF THEY EXPOSE THE SIGNAL WRITTEN BELLOW
@@ -37,8 +41,11 @@ func _load_cglf_functions(path: String = "res://addons/custom_global_light_funct
 			for function in data:
 				var function_data = function.from_dict()
 				_cglf_functions.append(function_data)
+		_no_light_function_view.hide()
+		_light_function_view.show()
 	else:
-		# MAKE IT SO IT SHOWS NO UI
+		_light_function_view.hide()
+		_no_light_function_view.show()
 		pass
 
 func _update_shaders() -> void:
