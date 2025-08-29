@@ -28,7 +28,6 @@ func _ready() -> void:
 	_load_saved_clf()
 	# LOOKOUT FOR CHANGE PULL REQUEST https://github.com/godotengine/godot/pull/107275 TO SEE IF THEY EXPOSE THE SIGNAL WRITTEN BELLOW
 	EditorInterface.get_file_system_dock().get_child(3).get_child(0).cell_selected.connect(_on_filesystemdock_file_selected)
-	_fill_blacklist_node()
 
 func _load_saved_clf() -> void:
 	clf_array.clear()
@@ -49,6 +48,7 @@ func _load_saved_clf() -> void:
 			_dock_views.current_tab = 0
 			_light_function_options_button.selected = current_clf_index
 			current_clf = clf_array[current_clf_index]
+			_fill_blacklist_node()
 		else:
 			_light_function_options_button.disabled = true
 			_dock_views.current_tab = 1
@@ -110,7 +110,7 @@ func _find_shader_files(path: String) -> Array:
 func _inject_custom_global_light_function(shader_files: Array) -> int:
 	var counter: int = 0
 	for shader_file in shader_files:
-		if shader_file in current_clf.blacklisted_items && !_ignore_blacklist_checkbox.button_pressed: continue
+		if shader_file in current_clf.blacklist && !_ignore_blacklist_checkbox.button_pressed: continue
 		var shader_file_resource = ResourceLoader.load(shader_file, "Shader", ResourceLoader.CACHE_MODE_IGNORE_DEEP)
 		if shader_file_resource is Shader:
 			var code: String = shader_file_resource.code
@@ -190,14 +190,15 @@ func _cglf_copy_boilerplate(code_injection_path: String = current_clf.include_fi
 
 func add_blacklisted_item():
 	var path = _blacklist_input.text
-	if  path in current_clf.blacklisted_items:
+	if  path in current_clf.blacklist:
 		print("CGLF: Shader file already blacklisted! You must really hate this one!!")
 		_blacklist_input.clear()
 	elif(!FileAccess.file_exists(path)):
 		print("CGLF: Shader file doesnt exist! It hasn't even been made and you already hate it!!")
 	else:
-		current_clf.blacklisted_items.append(path)
+		current_clf.blacklist.append(path)
 		_blacklist_input.clear()
+		current_clf.save(current_clf_index)
 		print("CGLF: Shader file blacklisted! Good job!")
 		_fill_blacklist_node()
 
@@ -205,11 +206,12 @@ func _remove_blacklisted_item():
 	var removed_item = _blacklist.get_selected_items()[0]
 	var removed_item_path =  _blacklist.get_item_text(removed_item)
 	_blacklist.remove_item(removed_item)
-	current_clf.blacklisted_items.remove_at(current_clf.blacklisted_items.find(removed_item_path))
+	current_clf.blacklist.remove_at(current_clf.blacklist.find(removed_item_path))
+	current_clf.save(current_clf_index)
 
 func _fill_blacklist_node():
 	_blacklist.clear()
-	for item in current_clf.blacklisted_items:
+	for item in current_clf.blacklist:
 		_blacklist.add_item(item)
 
 func _get_shader_type(code: String) -> String:

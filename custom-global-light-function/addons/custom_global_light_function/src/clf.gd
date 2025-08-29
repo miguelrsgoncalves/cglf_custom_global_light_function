@@ -8,7 +8,6 @@ var name: String = ""
 
 ## Update Shaders Settings ------------- ##
 var include_file_path: String = ""
-var blacklisted_items: PackedStringArray = []
 var ignore_blacklist: bool = false
 var replace_existing_light_functions: bool = false
 
@@ -20,6 +19,10 @@ var shader_types: Dictionary = {
 		"sky": false,
 		"fog": false
 }
+
+## Lists
+var blacklist: PackedStringArray = []
+var whitelist: PackedStringArray = []
 ##-------------------------------------- ##
 
 ## Creates a new CLF object and saves it to Saved GLF
@@ -38,7 +41,6 @@ func _save_to_dict() -> Dictionary:
 	return {
 		"name": name,
 		"include_file_path": include_file_path,
-		"blacklisted_items": blacklisted_items,
 		"ignore_blacklist": ignore_blacklist,
 		"replace_existing_light_functions": replace_existing_light_functions,
 		"shader_types": {
@@ -47,14 +49,15 @@ func _save_to_dict() -> Dictionary:
 				"particles": shader_types.get("particles", false),
 				"sky": shader_types.get("sky", false),
 				"fog": shader_types.get("fog", false),
-		}
+		},
+		"blacklist": blacklist,
+		"whitelist": whitelist
 	}
 
 ## Saves values from dictionary to class
 func _load_from_dict(data: Dictionary) -> void:	
 	name = data.get("name", "")
 	include_file_path = data.get("include_file_path", "")
-	blacklisted_items = data.get("blacklisted_items", PackedStringArray([]))
 	ignore_blacklist = data.get("ignore_blacklist", false)
 	replace_existing_light_functions = data.get("replace_existing_light_functions", false)
 	shader_types = data.get("shader_types", {
@@ -64,6 +67,8 @@ func _load_from_dict(data: Dictionary) -> void:
 			"sky": false,
 			"fog": false
 	})
+	blacklist = data.get("blacklist", PackedStringArray([]))
+	whitelist = data.get("whitelist", PackedStringArray([]))
 
 ## Saves this instance into the JSON file by ID, replacing if it exists or adds if not
 func save(index: int) -> void:

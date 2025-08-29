@@ -1,8 +1,7 @@
 [
 	{
 		"name": "Test",
-		"include_file_path": "res://addons/custom_global_light_function/include_files/test",
-		"blacklisted_items": [],
+		"include_file_path": "res://addons/custom_global_light_function/src/clf_include_files/test",
 		"ignore_blacklist": false,
 		"replace_existing_light_functions": false,
 		"shader_types": {
@@ -11,6 +10,10 @@
 			"particles": false,
 			"sky": false,
 			"fog": false
-		}
+		},
+		"blacklist": [
+			"res://new_shader.gdshader"
+		],
+		"whitelist": []
 	}
 ]
