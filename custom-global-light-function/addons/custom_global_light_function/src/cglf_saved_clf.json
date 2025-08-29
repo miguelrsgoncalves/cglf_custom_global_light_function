@@ -1,0 +1,16 @@
+[
+	{
+		"name": "Test",
+		"include_file_path": "res://addons/custom_global_light_function/include_files/test",
+		"blacklisted_items": [],
+		"ignore_blacklist": false,
+		"replace_existing_light_functions": false,
+		"shader_types": {
+			"spatial": false,
+			"canvas_item": false,
+			"particles": false,
+			"sky": false,
+			"fog": false
+		}
+	}
+]
