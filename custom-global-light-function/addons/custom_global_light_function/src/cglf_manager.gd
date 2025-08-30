@@ -184,6 +184,23 @@ func load_settings():
 	_shader_type_particles.button_pressed = current_clf.shader_types.get("particles")
 	_shader_type_sky.button_pressed = current_clf.shader_types.get("sky")
 	_shader_type_fog.button_pressed = current_clf.shader_types.get("fog")
+	if !current_clf.CLLF:
+		if is_shader_type_used("spatial"): _shader_type_spatial.disabled = true
+		else: _shader_type_spatial.disabled = false
+		if is_shader_type_used("canvas_item"): _shader_type_canvas_item.disabled = true
+		else: _shader_type_canvas_item.disabled = false
+		if is_shader_type_used("particles"): _shader_type_particles.disabled = true
+		else: _shader_type_particles.disabled = false
+		if is_shader_type_used("sky"): _shader_type_sky.disabled = true
+		else: _shader_type_sky.disabled = false
+		if is_shader_type_used("fog"): _shader_type_fog.disabled = true
+		else: _shader_type_fog.disabled = false
+	else: 
+		_shader_type_spatial.disabled = false
+		_shader_type_canvas_item.disabled = false
+		_shader_type_particles.disabled = false
+		_shader_type_sky.disabled = false
+		_shader_type_fog.disabled = false
 	_fill_lists_node()
 
 func save_settings():
@@ -194,7 +211,14 @@ func save_settings():
 	current_clf.shader_types.set("particles", _shader_type_particles.button_pressed)
 	current_clf.shader_types.set("sky", _shader_type_sky.button_pressed)
 	current_clf.shader_types.set("fog", _shader_type_fog.button_pressed)
+	if !current_clf.CLLF:
+		if is_shader_type_used("spatial"): current_clf.shader_types.set("spatial", false)
+		if is_shader_type_used("canvas_item"): current_clf.shader_types.set("canvas_item", false)
+		if is_shader_type_used("particles"): current_clf.shader_types.set("particles", false)
+		if is_shader_type_used("sky"): current_clf.shader_types.set("sky", false)
+		if is_shader_type_used("fog"): current_clf.shader_types.set("fog", false)
 	current_clf.save(current_clf_index)
+	load_settings()
 
 func _fill_lists_node():
 	_blacklist.clear()
@@ -274,4 +298,18 @@ func is_in_whitelist(path: String) -> bool:
 	for clf in clf_array:
 		if path in clf.whitelist:
 			return true
+	return false
+
+func is_shader_type_used(type: String) -> bool:
+	var index: int = 0
+	for clf in clf_array:
+		if index == current_clf_index:
+			index += 1
+			continue
+		if clf.CLLF:
+			index += 1
+			continue
+		if clf.shader_types.get(type):
+			return true
+		index += 1
 	return false
