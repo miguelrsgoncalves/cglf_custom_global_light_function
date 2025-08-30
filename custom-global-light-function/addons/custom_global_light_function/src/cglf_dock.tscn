@@ -42,8 +42,6 @@ image = SubResource("Image_1cy5g")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_relkf"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2g8uf"]
-
 [sub_resource type="Image" id="Image_kt538"]
 data = {
 "data": PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 225, 225, 225, 182, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 180, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 255, 0, 0, 0, 0, 224, 224, 224, 255, 224, 224, 224, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 255, 0, 0, 0, 0, 224, 224, 224, 255, 224, 224, 224, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 255, 0, 0, 0, 0, 224, 224, 224, 255, 224, 224, 224, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 255, 0, 0, 0, 0, 224, 224, 224, 255, 224, 224, 224, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 255, 0, 0, 0, 0, 224, 224, 224, 255, 224, 224, 224, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 171, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 170, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 231, 231, 231, 21, 224, 224, 224, 234, 224, 224, 224, 234, 231, 231, 231, 21, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 225, 225, 225, 85, 225, 225, 225, 85, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
@@ -69,6 +67,8 @@ data = {
 
 [sub_resource type="ImageTexture" id="ImageTexture_eiiy1"]
 image = SubResource("Image_gxcxo")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2g8uf"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g2go8"]
 
@@ -119,11 +119,9 @@ text_overrun_behavior = 3
 clip_text = true
 selected = 0
 fit_to_longest_item = false
-item_count = 2
+item_count = 1
 popup/item_0/text = "Test"
 popup/item_0/id = 0
-popup/item_1/text = "Test 2"
-popup/item_1/id = 1
 script = ExtResource("2_ph7ee")
 CGLF = NodePath("../../../..")
 
@@ -214,6 +212,28 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/separator = SubResource("StyleBoxEmpty_relkf")
 
+[node name="CLFButtons" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="EditCLF" type="Button" parent="VBoxContainer/CLFButtons" node_paths=PackedStringArray("CGLF")]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Open current CLF include file to edit the light function"
+text = "Edit CLF"
+icon = SubResource("ImageTexture_0as1t")
+alignment = 0
+text_overrun_behavior = 1
+script = ExtResource("6_g2go8")
+CGLF = NodePath("../../..")
+
+[node name="CopyBoilerplateToClipboard" type="Button" parent="VBoxContainer/CLFButtons" node_paths=PackedStringArray("CGLF")]
+layout_mode = 2
+tooltip_text = "Copies current CLF injection code to the clipboard for manually injection"
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ikwbf")
+icon = SubResource("ImageTexture_eiiy1")
+script = ExtResource("6_72etw")
+CGLF = NodePath("../../..")
+
 [node name="Dock Views" type="TabContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -225,6 +245,7 @@ tabs_visible = false
 [node name="CLFView" type="ScrollContainer" parent="VBoxContainer/Dock Views"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_type_variation = &"TreeSecondary"
 metadata/_tab_index = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Dock Views/CLFView"]
@@ -232,28 +253,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 16
-
-[node name="CLFButtons" type="HBoxContainer" parent="VBoxContainer/Dock Views/CLFView/VBoxContainer"]
-layout_mode = 2
-
-[node name="EditCLF" type="Button" parent="VBoxContainer/Dock Views/CLFView/VBoxContainer/CLFButtons" node_paths=PackedStringArray("CGLF")]
-layout_mode = 2
-size_flags_horizontal = 3
-tooltip_text = "Open current CLF include file to edit the light function"
-text = "Edit CLF"
-icon = SubResource("ImageTexture_0as1t")
-alignment = 0
-text_overrun_behavior = 1
-script = ExtResource("6_g2go8")
-CGLF = NodePath("../../../../../..")
-
-[node name="CopyBoilerplateToClipboard" type="Button" parent="VBoxContainer/Dock Views/CLFView/VBoxContainer/CLFButtons" node_paths=PackedStringArray("CGLF")]
-layout_mode = 2
-tooltip_text = "Copies current CLF injection code to the clipboard for manually injection"
-theme_override_styles/normal = SubResource("StyleBoxEmpty_ikwbf")
-icon = SubResource("ImageTexture_eiiy1")
-script = ExtResource("6_72etw")
-CGLF = NodePath("../../../../../..")
 
 [node name="UpdateshadersWindow" type="VBoxContainer" parent="VBoxContainer/Dock Views/CLFView/VBoxContainer"]
 layout_mode = 2
@@ -369,6 +368,7 @@ layout_mode = 2
 tooltip_text = "Shaders in the blacklist will not be injected by the current CLF.
 
 The blacklist has priority over the whitelist."
+theme_type_variation = &"TopBarOptionButton"
 bbcode_enabled = true
 text = "[b]Blacklist"
 fit_content = true
@@ -412,8 +412,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 tooltip_text = "List of shaders blacklisted from the current CLF."
-item_count = 1
-item_0/text = "res://new_shader.gdshader"
 
 [node name="RemoveBlacklistedItem" type="Button" parent="VBoxContainer/Dock Views/CLFView/VBoxContainer/Blacklist"]
 layout_mode = 2
@@ -431,6 +429,7 @@ layout_mode = 2
 tooltip_text = "Shaders in the whitelist become ownerd by the CLF that owns the whitelist.
 
 No other CLF  can own the shader. This can be used to create seperate environments where only one CLF can affect the chosen shaders."
+theme_type_variation = &"TopBarOptionButton"
 bbcode_enabled = true
 text = "[b]Whitelist"
 fit_content = true
@@ -510,8 +509,8 @@ vertical_alignment = 1
 [connection signal="text_submitted" from="VBoxContainer/CLFSelector/HBoxContainer/AddCLFPopup/VBoxContainer/CLFNameLineInput" to="VBoxContainer/CLFSelector/HBoxContainer/AddCLFPopup" method="_on_clf_name_input_text_submitted"]
 [connection signal="pressed" from="VBoxContainer/CLFSelector/HBoxContainer/AddCLFPopup/VBoxContainer/HBoxContainer/CreateCLFButton" to="VBoxContainer/CLFSelector/HBoxContainer/AddCLFPopup" method="_on_create_clf_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/CLFSelector/HBoxContainer/AddCLFPopup/VBoxContainer/HBoxContainer/CancelCLFCreationButton" to="VBoxContainer/CLFSelector/HBoxContainer/AddCLFPopup" method="_on_cancel_clf_creation_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/Dock Views/CLFView/VBoxContainer/CLFButtons/EditCLF" to="VBoxContainer/Dock Views/CLFView/VBoxContainer/CLFButtons/EditCLF" method="_on_pressed"]
-[connection signal="pressed" from="VBoxContainer/Dock Views/CLFView/VBoxContainer/CLFButtons/CopyBoilerplateToClipboard" to="VBoxContainer/Dock Views/CLFView/VBoxContainer/CLFButtons/CopyBoilerplateToClipboard" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/CLFButtons/EditCLF" to="VBoxContainer/CLFButtons/EditCLF" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/CLFButtons/CopyBoilerplateToClipboard" to="VBoxContainer/CLFButtons/CopyBoilerplateToClipboard" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/Dock Views/CLFView/VBoxContainer/UpdateshadersWindow/InjectShadersButton" to="." method="inject_shaders"]
 [connection signal="pressed" from="VBoxContainer/Dock Views/CLFView/VBoxContainer/UpdateshadersWindow/VBoxContainer/HBoxContainer4/CLLF" to="." method="save_settings"]
 [connection signal="pressed" from="VBoxContainer/Dock Views/CLFView/VBoxContainer/UpdateshadersWindow/VBoxContainer/HBoxContainer2/ReplaceExistingLightFunctions" to="." method="save_settings"]
