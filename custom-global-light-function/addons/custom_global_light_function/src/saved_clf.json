@@ -35,7 +35,7 @@
 		"ignore_blacklist": false,
 		"replace_existing_light_functions": false,
 		"shader_types": {
-			"spatial": false,
+			"spatial": true,
 			"canvas_item": false,
 			"particles": true,
 			"sky": false,

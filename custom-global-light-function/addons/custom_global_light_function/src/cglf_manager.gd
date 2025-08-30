@@ -117,7 +117,7 @@ func _inject_clf(shader_files: Array) -> int:
 			var setting_key = current_clf.shader_types.get(shader_type)
 			
 			if !setting_key:
-				shader_file_resource.code = code.replace(generate_boilerplate(), "")
+				shader_file_resource.code = remove_clf_injection(code)
 				ResourceSaver.save(shader_file_resource, shader_file, ResourceSaver.FLAG_REPLACE_SUBRESOURCE_PATHS)
 				var fs_dock = EditorInterface.get_file_system_dock()
 				fs_dock.file_removed.emit(shader_file)
@@ -139,15 +139,10 @@ func _inject_clf(shader_files: Array) -> int:
 			code = commented_light_func_regex.sub(code, "", true)
 			
 			# Checks for already injected CLF, replacing if it finds or appending at the end if not
-			var boilerplate_regex := RegEx.new()
-			boilerplate_regex.compile(CGLF_GV.cglf_injection_boiler_plate_start + '#include ".*"' + CGLF_GV.cglf_injection_boiler_plate_ending)
-			if boilerplate_regex.search(code):
-				var include_regex := RegEx.new()
-				include_regex.compile('#include ".*"')
-				code = include_regex.sub(code, '#include "' + current_clf.include_file_path + '"', true)
-			else:
-				code += generate_boilerplate()
+			if code.find(CGLF_GV.cglf_injection_boiler_plate_start):
+				code = remove_clf_injection(code)
 			
+			code += generate_boilerplate()
 			shader_file_resource.code = code
 			ResourceSaver.save(shader_file_resource, shader_file, ResourceSaver.FLAG_REPLACE_SUBRESOURCE_PATHS)
 			
@@ -249,3 +244,12 @@ func remove_whitelisted_item():
 	_whitelist.remove_item(removed_item)
 	current_clf.remove_list_item("whitelist", removed_item_path, current_clf_index)
 	print("CGLF: Shader no longer among the favorites!")
+
+func remove_clf_injection(code: String) -> String:
+	var pattern = r"(?s)" + CGLF_GV.cglf_injection_boiler_plate_start + r".*?" + CGLF_GV.cglf_injection_boiler_plate_ending
+	var regex := RegEx.new()
+	regex.compile(pattern)
+
+	if regex.search(code):
+		code = regex.sub(code, "", true)
+	return code
