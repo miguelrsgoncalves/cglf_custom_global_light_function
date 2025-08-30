@@ -82,15 +82,15 @@ func delete_light_function() -> void:
 		current_clf_index = clampi(_index - 1, 0, INF as int)
 		_load_saved_clf()
 
-func _update_shaders() -> void:
+func inject_shaders() -> void:
 	var shader_files = _find_shader_files("res://")
 	if shader_files.size() > 0:
-		print("CGLF: The following ERRORS, one per shader file updated, are expected and are part of the inner works of the plugin! Didn't find a way to not make them appear :(")
-		var files_injected: int = _inject_custom_global_light_function(shader_files)
+		print("CGLF: The following ERRORS, one per shader file injected, are expected and are part of the inner works of the plugin! Didn't find a way to not make them appear :(")
+		var files_injected: int = _inject_clf(shader_files)
 		if files_injected > 0:
-			print("CGLF: Added Custom Global Light Function to ", files_injected, " shaders!")
+			print("CGLF: Added CLF to ", files_injected, " shaders!")
 		else:
-			print("CGLF: OOOPS... No shaders were updated!")
+			print("CGLF: OOOPS... No shaders were injected!")
 	else:
 		print("CGLF: No shaders files found! Go create some!")
 
@@ -109,22 +109,21 @@ func _find_shader_files(path: String) -> Array:
 		dir.list_dir_end()
 	return results
 
-func _inject_custom_global_light_function(shader_files: Array) -> int:
+func _inject_clf(shader_files: Array) -> int:
 	var counter: int = 0
 	for shader_file in shader_files:
-		if shader_file in current_clf.blacklist: continue
+		if shader_file in current_clf.blacklist && shader_file not in current_clf.whitelist: continue
 		var shader_file_resource = ResourceLoader.load(shader_file, "Shader", ResourceLoader.CACHE_MODE_IGNORE_DEEP)
 		if shader_file_resource is Shader:
 			var code: String = shader_file_resource.code
 			
 			# Check project settings for this type
 			var shader_type := _get_shader_type(code)
-			var setting_key = "rendering/cglf/shader_types/" + shader_type
-			var enabled = ProjectSettings.has_setting(setting_key) and ProjectSettings.get_setting(setting_key)
+			var setting_key = current_clf.shader_types.get(shader_type)
 			
-			if !enabled:
+			if !setting_key:
 				var boilerplate_regex := RegEx.new()
-				boilerplate_regex.compile(_injection_boiler_plate_start + '#include ".*"' + _injection_boiler_plate_ending)
+				boilerplate_regex.compile(_injection_boiler_plate_start + '".*"' + _injection_boiler_plate_ending)
 				if boilerplate_regex.search(code):
 					code = boilerplate_regex.sub(code, "", true)
 					shader_file_resource.code = code
@@ -142,15 +141,15 @@ func _inject_custom_global_light_function(shader_files: Array) -> int:
 			light_func_regex.compile(r"(?ms)^[ \t\r\n]*void[ \t]+light\s*\([^)]*\)\s*\{.*?\}[ \t\r\n]*")
 			var has_light_func = light_func_regex.search(code)
 			if has_light_func && !_replace_existing_light_functions_checkbox.button_pressed: continue
+			elif has_light_func && _replace_existing_light_functions_checkbox.button_pressed:
+				code = light_func_regex.sub(code, "", true)
 			
+			# Removes commented light functions
 			var commented_light_func_regex := RegEx.new()
 			commented_light_func_regex.compile(r"(?ms)^[ \t\r\n]*//[ \t]*void[ \t]+light\s*\([^)]*\)\s*\{.*?\}[ \t\r\n]*")
 			code = commented_light_func_regex.sub(code, "", true)
 			
-			if has_light_func && _replace_existing_light_functions_checkbox.button_pressed:
-				code = light_func_regex.sub(code, "", true)
-			
-			# Checks for already injected CGLF
+			# Checks for already injected CLF, replacing if it finds or appending at the end if not
 			var boilerplate_regex := RegEx.new()
 			boilerplate_regex.compile(_injection_boiler_plate_start + '#include ".*"' + _injection_boiler_plate_ending)
 			if boilerplate_regex.search(code):
