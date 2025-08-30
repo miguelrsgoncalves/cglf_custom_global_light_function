@@ -48,7 +48,6 @@ func _load_saved_clf() -> void:
 			_clf_options_button.selected = current_clf_index
 			current_clf = clf_array[current_clf_index]
 			load_settings()
-			_fill_lists_node()
 		else:
 			_clf_options_button.disabled = true
 			_dock_views.current_tab = 1
@@ -185,6 +184,7 @@ func load_settings():
 	_shader_type_particles.button_pressed = current_clf.shader_types.get("particles")
 	_shader_type_sky.button_pressed = current_clf.shader_types.get("sky")
 	_shader_type_fog.button_pressed = current_clf.shader_types.get("fog")
+	_fill_lists_node()
 
 func save_settings():
 	current_clf.CLLF = _CLLF.button_pressed
@@ -230,6 +230,7 @@ func add_blacklisted_item():
 		_fill_lists_node()
 
 func remove_blacklisted_item():
+	if !_blacklist.get_selected_items(): return
 	var removed_item = _blacklist.get_selected_items()[0]
 	var removed_item_path =  _blacklist.get_item_text(removed_item)
 	_blacklist.remove_item(removed_item)
@@ -250,6 +251,7 @@ func add_whitelisted_item():
 		_fill_lists_node()
 
 func remove_whitelisted_item():
+	if !_whitelist.get_selected_items(): return
 	var removed_item = _whitelist.get_selected_items()[0]
 	var removed_item_path =  _whitelist.get_item_text(removed_item)
 	_whitelist.remove_item(removed_item)

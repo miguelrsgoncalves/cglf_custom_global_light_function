@@ -378,7 +378,7 @@ size_flags_horizontal = 3
 tooltip_text = "Select a .gdshader file in the File Dock to automatically add the path to the Blacklist input text bar.
 
 Or paste the file path into the input text bar. "
-text = "res://new_shader2.gdshader"
+text = "res://new_shader.gdshader"
 placeholder_text = "Select shader file in File Dock or paste shader file path"
 keep_editing_on_text_submit = true
 emoji_menu_enabled = false
@@ -431,7 +431,7 @@ size_flags_horizontal = 3
 tooltip_text = "Select a .gdshader file in the File Dock to automatically add the path to the Blacklist input text bar.
 
 Or paste the file path into the input text bar. "
-text = "res://new_shader2.gdshader"
+text = "res://new_shader.gdshader"
 placeholder_text = "Select shader file in File Dock or paste shader file path"
 keep_editing_on_text_submit = true
 emoji_menu_enabled = false
