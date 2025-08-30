@@ -11,4 +11,4 @@ func _on_pressed() -> void:
 	_accept_dialog.popup()
 
 func _on_accept_dialog_confirmed() -> void:
-	CGLF.delete_light_function()
+	CGLF.delete_clf()

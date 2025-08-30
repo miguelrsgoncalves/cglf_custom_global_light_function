@@ -6,9 +6,6 @@ var clf_array: Array[CustomLightFunction] = []
 var current_clf: CustomLightFunction = null
 var current_clf_index: int = 0
 
-var _injection_boiler_plate_start: String = "\n\n//CGLF - "
-var _injection_boiler_plate_ending: String = "\n//CGLF"
-
 @export_category("Nodes")
 @export var _clf_options_button: OptionButton = null
 @export var _replace_existing_light_functions_checkbox: CheckBox = null
@@ -49,7 +46,7 @@ func _load_saved_clf() -> void:
 			_dock_views.current_tab = 0
 			_clf_options_button.selected = current_clf_index
 			current_clf = clf_array[current_clf_index]
-			_load_settings()
+			load_settings()
 			_fill_lists_node()
 		else:
 			_clf_options_button.disabled = true
@@ -67,19 +64,17 @@ func create_clf(name: String) -> void:
 	var _name_capitalized = " ".join(_split_name_capitulized)
 	CustomLightFunction.new().create({
 		"name": _name_capitalized,
-		"include_file_path": CGLF_GV.clf_include_files_folder_path + name,
+		"include_file_path": CGLF_GV.clf_include_files_folder_path + name + ".gdshaderinc",
 	}, clf_array.size())
-	print("CGLF: New Light Function created with name: ", _name_capitalized)
 	current_clf_index = _clf_options_button.item_count
 	_load_saved_clf()
 
-func delete_light_function() -> void:
+func delete_clf() -> void:
 	if clf_array.size() > 0:
 		var _index: int = _clf_options_button.get_selected_id()
-		print("CGLF: Deleted Light Function with name: ", clf_array[_index].name)
 		clf_array[_index].delete(_index)
 		clf_array.remove_at(_index)
-		current_clf_index = clampi(_index - 1, 0, INF as int)
+		current_clf_index = maxi(_index - 1, 0)
 		_load_saved_clf()
 
 func inject_shaders() -> void:
@@ -122,18 +117,12 @@ func _inject_clf(shader_files: Array) -> int:
 			var setting_key = current_clf.shader_types.get(shader_type)
 			
 			if !setting_key:
-				var boilerplate_regex := RegEx.new()
-				boilerplate_regex.compile(_injection_boiler_plate_start + '".*"' + _injection_boiler_plate_ending)
-				if boilerplate_regex.search(code):
-					code = boilerplate_regex.sub(code, "", true)
-					shader_file_resource.code = code
-					ResourceSaver.save(shader_file_resource, shader_file, ResourceSaver.FLAG_REPLACE_SUBRESOURCE_PATHS)
-					
-					var fs_dock = EditorInterface.get_file_system_dock()
-					fs_dock.file_removed.emit(shader_file)
-					
-					var fs = EditorInterface.get_resource_filesystem()
-					fs.reimport_files([shader_file])
+				shader_file_resource.code = code.replace(generate_boilerplate(), "")
+				ResourceSaver.save(shader_file_resource, shader_file, ResourceSaver.FLAG_REPLACE_SUBRESOURCE_PATHS)
+				var fs_dock = EditorInterface.get_file_system_dock()
+				fs_dock.file_removed.emit(shader_file)
+				var fs = EditorInterface.get_resource_filesystem()
+				fs.reimport_files([shader_file])
 				continue
 			
 			# Skip file if it has a light func and replace_existing_light_func is OFF
@@ -151,13 +140,13 @@ func _inject_clf(shader_files: Array) -> int:
 			
 			# Checks for already injected CLF, replacing if it finds or appending at the end if not
 			var boilerplate_regex := RegEx.new()
-			boilerplate_regex.compile(_injection_boiler_plate_start + '#include ".*"' + _injection_boiler_plate_ending)
+			boilerplate_regex.compile(CGLF_GV.cglf_injection_boiler_plate_start + '#include ".*"' + CGLF_GV.cglf_injection_boiler_plate_ending)
 			if boilerplate_regex.search(code):
 				var include_regex := RegEx.new()
 				include_regex.compile('#include ".*"')
 				code = include_regex.sub(code, '#include "' + current_clf.include_file_path + '"', true)
 			else:
-				code += _injection_boiler_plate_start + '#include "' + current_clf.include_file_path + '"' + _injection_boiler_plate_ending
+				code += generate_boilerplate()
 			
 			shader_file_resource.code = code
 			ResourceSaver.save(shader_file_resource, shader_file, ResourceSaver.FLAG_REPLACE_SUBRESOURCE_PATHS)
@@ -173,7 +162,7 @@ func _inject_clf(shader_files: Array) -> int:
 func generate_boilerplate():
 	var name: String = current_clf.name
 	var path: String = current_clf.include_file_path
-	var boiler_plate: String = _injection_boiler_plate_start + name + "\n" + '#include "' + path + '"' + _injection_boiler_plate_ending
+	var boiler_plate: String = CGLF_GV.cglf_injection_boiler_plate_start + name + "\n" + '#include "' + path + '"' + CGLF_GV.cglf_injection_boiler_plate_ending
 	return boiler_plate
 
 func _get_shader_type(code: String) -> String:
@@ -184,13 +173,22 @@ func _get_shader_type(code: String) -> String:
 		return match.get_string(1)
 	return ""
 
-func _load_settings():
+func load_settings():
 	_replace_existing_light_functions_checkbox.button_pressed = current_clf.replace_existing_light_functions
 	_shader_type_spatial.button_pressed = current_clf.shader_types.get("spatial")
 	_shader_type_canvas_item.button_pressed = current_clf.shader_types.get("canvas_item")
 	_shader_type_particles.button_pressed = current_clf.shader_types.get("particles")
 	_shader_type_sky.button_pressed = current_clf.shader_types.get("sky")
 	_shader_type_fog.button_pressed = current_clf.shader_types.get("fog")
+
+func save_settings():
+	current_clf.replace_existing_light_functions = _replace_existing_light_functions_checkbox.button_pressed
+	current_clf.shader_types.set("spatial", _shader_type_spatial.button_pressed)
+	current_clf.shader_types.set("canvas_item", _shader_type_canvas_item.button_pressed)
+	current_clf.shader_types.set("particles", _shader_type_particles.button_pressed)
+	current_clf.shader_types.set("sky", _shader_type_sky.button_pressed)
+	current_clf.shader_types.set("fog", _shader_type_fog.button_pressed)
+	current_clf.save(current_clf_index)
 
 func _fill_lists_node():
 	_blacklist.clear()
@@ -207,7 +205,7 @@ func _on_filesystemdock_file_selected():
 		_blacklist_input.text = path
 		_blacklist_input.text_changed.emit(path)
 		_whitelist_input.text = path
-		_blacklist_input.text_changed.emit(path)
+		_whitelist_input.text_changed.emit(path)
 	else:
 		_blacklist_input.clear()
 		_whitelist_input.clear()

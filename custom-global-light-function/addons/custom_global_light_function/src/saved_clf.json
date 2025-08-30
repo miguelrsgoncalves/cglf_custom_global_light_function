@@ -1,11 +1,56 @@
 [
 	{
-		"name": "Test",
-		"include_file_path": "res://addons/custom_global_light_function/src/clf_include_files/test",
+		"name": "1",
+		"include_file_path": "res://addons/custom_global_light_function/src/clf_include_files/1.gdshaderinc",
+		"ignore_blacklist": false,
+		"replace_existing_light_functions": false,
+		"shader_types": {
+			"spatial": true,
+			"canvas_item": false,
+			"particles": false,
+			"sky": false,
+			"fog": false
+		},
+		"blacklist": [],
+		"whitelist": []
+	},
+	{
+		"name": "2",
+		"include_file_path": "res://addons/custom_global_light_function/src/clf_include_files/2.gdshaderinc",
+		"ignore_blacklist": false,
+		"replace_existing_light_functions": false,
+		"shader_types": {
+			"spatial": true,
+			"canvas_item": false,
+			"particles": false,
+			"sky": false,
+			"fog": false
+		},
+		"blacklist": [],
+		"whitelist": []
+	},
+	{
+		"name": "3",
+		"include_file_path": "res://addons/custom_global_light_function/src/clf_include_files/3.gdshaderinc",
 		"ignore_blacklist": false,
 		"replace_existing_light_functions": false,
 		"shader_types": {
 			"spatial": false,
+			"canvas_item": false,
+			"particles": true,
+			"sky": false,
+			"fog": true
+		},
+		"blacklist": [],
+		"whitelist": []
+	},
+	{
+		"name": "Test",
+		"include_file_path": "res://addons/custom_global_light_function/src/clf_include_files/test.gdshaderinc",
+		"ignore_blacklist": false,
+		"replace_existing_light_functions": false,
+		"shader_types": {
+			"spatial": true,
 			"canvas_item": false,
 			"particles": false,
 			"sky": false,
