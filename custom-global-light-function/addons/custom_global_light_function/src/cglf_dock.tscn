@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://b8d1f7wfft7ip"]
+[gd_scene load_steps=27 format=3 uid="uid://b8d1f7wfft7ip"]
 
 [ext_resource type="Script" uid="uid://bojfj581b74xs" path="res://addons/custom_global_light_function/src/cglf_manager.gd" id="1_avgqn"]
 [ext_resource type="Script" uid="uid://mi1jbn4hrph" path="res://addons/custom_global_light_function/src/nodes/add_clf_button.gd" id="2_6jpod"]
@@ -7,8 +7,6 @@
 [ext_resource type="Script" uid="uid://bedhxsq1cqe0f" path="res://addons/custom_global_light_function/src/nodes/add_clf_popup.gd" id="4_relkf"]
 [ext_resource type="Script" uid="uid://bka0v7eyvxco2" path="res://addons/custom_global_light_function/src/nodes/copy_to_clipboard.gd" id="6_72etw"]
 [ext_resource type="Script" uid="uid://8swoehnl8313" path="res://addons/custom_global_light_function/src/nodes/edit_clf.gd" id="6_g2go8"]
-[ext_resource type="Script" uid="uid://ck72l1rak8k0p" path="res://addons/custom_global_light_function/src/nodes/move_up.gd" id="7_ikwbf"]
-[ext_resource type="Script" uid="uid://cduf17yt8vtbp" path="res://addons/custom_global_light_function/src/nodes/move_down.gd" id="8_g2go8"]
 [ext_resource type="Script" uid="uid://bhy2mt5iec16d" path="res://addons/custom_global_light_function/src/nodes/blacklist_input.gd" id="10_2g8uf"]
 [ext_resource type="Script" uid="uid://dcg4yq004dcjt" path="res://addons/custom_global_light_function/src/nodes/whitelist_input.gd" id="11_1cy5g"]
 
@@ -74,35 +72,11 @@ data = {
 [sub_resource type="ImageTexture" id="ImageTexture_k8krm"]
 image = SubResource("Image_6xqv0")
 
-[sub_resource type="Image" id="Image_c8py7"]
-data = {
-"data": PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 181, 224, 224, 224, 180, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 255, 224, 224, 224, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 255, 224, 224, 224, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 180, 224, 224, 224, 195, 231, 231, 231, 21, 0, 0, 0, 0, 224, 224, 224, 255, 224, 224, 224, 255, 0, 0, 0, 0, 231, 231, 231, 21, 224, 224, 224, 195, 224, 224, 224, 178, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 195, 224, 224, 224, 255, 224, 224, 224, 210, 231, 231, 231, 21, 224, 224, 224, 255, 224, 224, 224, 255, 231, 231, 231, 21, 224, 224, 224, 211, 224, 224, 224, 255, 224, 224, 224, 194, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 231, 231, 231, 21, 224, 224, 224, 210, 224, 224, 224, 255, 224, 224, 224, 210, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 211, 224, 224, 224, 255, 224, 224, 224, 210, 230, 230, 230, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 231, 231, 231, 21, 224, 224, 224, 210, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 210, 230, 230, 230, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 231, 231, 231, 21, 224, 224, 224, 210, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 210, 230, 230, 230, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 231, 231, 231, 21, 224, 224, 224, 255, 224, 224, 224, 255, 230, 230, 230, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-"format": "RGBA8",
-"height": 16,
-"mipmaps": false,
-"width": 16
-}
-
-[sub_resource type="ImageTexture" id="ImageTexture_5q2qr"]
-image = SubResource("Image_c8py7")
-
-[sub_resource type="Image" id="Image_dxao7"]
-data = {
-"data": PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 231, 231, 231, 21, 224, 224, 224, 255, 224, 224, 224, 255, 231, 231, 231, 21, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 231, 231, 231, 21, 224, 224, 224, 211, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 210, 231, 231, 231, 21, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 231, 231, 231, 21, 224, 224, 224, 211, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 210, 231, 231, 231, 21, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 231, 231, 231, 21, 224, 224, 224, 211, 224, 224, 224, 255, 224, 224, 224, 210, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 210, 224, 224, 224, 255, 224, 224, 224, 210, 231, 231, 231, 21, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 195, 224, 224, 224, 255, 224, 224, 224, 210, 230, 230, 230, 20, 224, 224, 224, 255, 224, 224, 224, 255, 231, 231, 231, 21, 224, 224, 224, 210, 224, 224, 224, 255, 224, 224, 224, 194, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 178, 224, 224, 224, 194, 230, 230, 230, 20, 0, 0, 0, 0, 224, 224, 224, 255, 224, 224, 224, 255, 0, 0, 0, 0, 231, 231, 231, 21, 224, 224, 224, 194, 224, 224, 224, 179, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 255, 224, 224, 224, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 255, 224, 224, 224, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 180, 224, 224, 224, 180, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-"format": "RGBA8",
-"height": 16,
-"mipmaps": false,
-"width": 16
-}
-
-[sub_resource type="ImageTexture" id="ImageTexture_yfxnf"]
-image = SubResource("Image_dxao7")
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g2go8"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ftocf"]
 
-[node name="CGLF" type="Control" node_paths=PackedStringArray("_clf_options_button", "_replace_existing_light_functions_checkbox", "_shader_type_spatial", "_shader_type_canvas_item", "_shader_type_particles", "_shader_type_sky", "_shader_type_fog", "_blacklist", "_blacklist_input", "_whitelist", "_whitelist_input", "_dock_views")]
+[node name="CGLF" type="Control" node_paths=PackedStringArray("_clf_options_button", "_LCLF", "_replace_existing_light_functions_checkbox", "_shader_type_spatial", "_shader_type_canvas_item", "_shader_type_particles", "_shader_type_sky", "_shader_type_fog", "_blacklist", "_blacklist_input", "_whitelist", "_whitelist_input", "_dock_views")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -111,6 +85,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_avgqn")
 _clf_options_button = NodePath("VBoxContainer/CLFSelector/HBoxContainer/CLFOptionsButton")
+_LCLF = NodePath("VBoxContainer/Dock Views/CLFView/VBoxContainer/UpdateshadersWindow/VBoxContainer/HBoxContainer4/LCLF")
 _replace_existing_light_functions_checkbox = NodePath("VBoxContainer/Dock Views/CLFView/VBoxContainer/UpdateshadersWindow/VBoxContainer/HBoxContainer2/ReplaceExistingLightFunctions")
 _shader_type_spatial = NodePath("VBoxContainer/Dock Views/CLFView/VBoxContainer/UpdateshadersWindow/VBoxContainer/HBoxContainer3/VBoxContainer/Spatial")
 _shader_type_canvas_item = NodePath("VBoxContainer/Dock Views/CLFView/VBoxContainer/UpdateshadersWindow/VBoxContainer/HBoxContainer3/VBoxContainer/CanvasItem")
@@ -277,20 +252,6 @@ icon = SubResource("ImageTexture_k8krm")
 script = ExtResource("6_72etw")
 CGLF = NodePath("../../../../../..")
 
-[node name="MoveCLFUp" type="Button" parent="VBoxContainer/Dock Views/CLFView/VBoxContainer/CLFButtons"]
-layout_mode = 2
-tooltip_text = "Moves current CLF up in the CLF list"
-theme_override_styles/normal = SubResource("StyleBoxEmpty_ikwbf")
-icon = SubResource("ImageTexture_5q2qr")
-script = ExtResource("7_ikwbf")
-
-[node name="MoveCLFDown" type="Button" parent="VBoxContainer/Dock Views/CLFView/VBoxContainer/CLFButtons"]
-layout_mode = 2
-tooltip_text = "Moves current CLF down in the CLF list"
-theme_override_styles/normal = SubResource("StyleBoxEmpty_ikwbf")
-icon = SubResource("ImageTexture_yfxnf")
-script = ExtResource("8_g2go8")
-
 [node name="UpdateshadersWindow" type="VBoxContainer" parent="VBoxContainer/Dock Views/CLFView/VBoxContainer"]
 layout_mode = 2
 
@@ -307,12 +268,35 @@ text_overrun_behavior = 3
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Dock Views/CLFView/VBoxContainer/UpdateshadersWindow"]
 layout_mode = 2
 
+[node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer/Dock Views/CLFView/VBoxContainer/UpdateshadersWindow/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Dock Views/CLFView/VBoxContainer/UpdateshadersWindow/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Converts the current CLF into a LCLF (Local Custom Light Function), which means it will no longer affect shaders globaly and only affect shader files that have been whitelisted. These whitelisted shaders will only be available to this CLF.
+
+This also allows the LCLF to have the same shader types as other CLF."
+mouse_filter = 0
+text = "LCLF"
+vertical_alignment = 1
+text_overrun_behavior = 1
+
+[node name="LCLF" type="CheckBox" parent="VBoxContainer/Dock Views/CLFView/VBoxContainer/UpdateshadersWindow/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+action_mode = 0
+text = "On"
+text_overrun_behavior = 1
+
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/Dock Views/CLFView/VBoxContainer/UpdateshadersWindow/VBoxContainer"]
 layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/Dock Views/CLFView/VBoxContainer/UpdateshadersWindow/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
+tooltip_text = "Replaces existing Light Functions in shaders affected by the current CLF"
+mouse_filter = 0
 text = "Replace existing Light Functions"
 vertical_alignment = 1
 text_overrun_behavior = 1
@@ -331,6 +315,10 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+tooltip_text = "Shader types affected by the current CLF.
+
+Enabling a shader type will disable it for other CLF. If you want multiple CLFs to use the shader type check the LCLF setting"
+mouse_filter = 0
 text = "Shader Types"
 text_overrun_behavior = 1
 
@@ -504,9 +492,8 @@ vertical_alignment = 1
 [connection signal="pressed" from="VBoxContainer/CLFSelector/HBoxContainer/AddCLFPopup/VBoxContainer/HBoxContainer/CancelCLFCreationButton" to="VBoxContainer/CLFSelector/HBoxContainer/AddCLFPopup" method="_on_cancel_light_function_creation_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Dock Views/CLFView/VBoxContainer/CLFButtons/EditCLF" to="VBoxContainer/Dock Views/CLFView/VBoxContainer/CLFButtons/EditCLF" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/Dock Views/CLFView/VBoxContainer/CLFButtons/CopyBoilerplateToClipboard" to="VBoxContainer/Dock Views/CLFView/VBoxContainer/CLFButtons/CopyBoilerplateToClipboard" method="_on_pressed"]
-[connection signal="pressed" from="VBoxContainer/Dock Views/CLFView/VBoxContainer/CLFButtons/MoveCLFUp" to="." method="_cglf_copy_boilerplate"]
-[connection signal="pressed" from="VBoxContainer/Dock Views/CLFView/VBoxContainer/CLFButtons/MoveCLFDown" to="." method="_cglf_copy_boilerplate"]
 [connection signal="pressed" from="VBoxContainer/Dock Views/CLFView/VBoxContainer/UpdateshadersWindow/InjectShadersButton" to="." method="inject_shaders"]
+[connection signal="pressed" from="VBoxContainer/Dock Views/CLFView/VBoxContainer/UpdateshadersWindow/VBoxContainer/HBoxContainer4/LCLF" to="." method="save_settings"]
 [connection signal="pressed" from="VBoxContainer/Dock Views/CLFView/VBoxContainer/UpdateshadersWindow/VBoxContainer/HBoxContainer2/ReplaceExistingLightFunctions" to="." method="save_settings"]
 [connection signal="pressed" from="VBoxContainer/Dock Views/CLFView/VBoxContainer/UpdateshadersWindow/VBoxContainer/HBoxContainer3/VBoxContainer/Spatial" to="." method="save_settings"]
 [connection signal="pressed" from="VBoxContainer/Dock Views/CLFView/VBoxContainer/UpdateshadersWindow/VBoxContainer/HBoxContainer3/VBoxContainer/CanvasItem" to="." method="save_settings"]

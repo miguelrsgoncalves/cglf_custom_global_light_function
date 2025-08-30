@@ -8,6 +8,7 @@ var current_clf_index: int = 0
 
 @export_category("Nodes")
 @export var _clf_options_button: OptionButton = null
+@export var _LCLF: CheckBox = null
 @export var _replace_existing_light_functions_checkbox: CheckBox = null
 @export var _shader_type_spatial: CheckBox = null
 @export var _shader_type_canvas_item: CheckBox = null
@@ -83,7 +84,7 @@ func inject_shaders() -> void:
 		print("CGLF: The following ERRORS, one per shader file injected, are expected and are part of the inner works of the plugin! Didn't find a way to not make them appear :(")
 		var files_injected: int = _inject_clf(shader_files)
 		if files_injected > 0:
-			print("CGLF: Added CLF to ", files_injected, " shaders!")
+			print("CGLF: Injected CLF into ", files_injected, " shaders!")
 		else:
 			print("CGLF: OOOPS... No shaders were injected!")
 	else:
@@ -107,7 +108,9 @@ func _find_shader_files(path: String) -> Array:
 func _inject_clf(shader_files: Array) -> int:
 	var counter: int = 0
 	for shader_file in shader_files:
-		if shader_file in current_clf.blacklist && shader_file not in current_clf.whitelist: continue
+		if shader_file in current_clf.blacklist: continue
+		if is_in_whitelist(shader_file) && shader_file not in current_clf.whitelist: continue
+		
 		var shader_file_resource = ResourceLoader.load(shader_file, "Shader", ResourceLoader.CACHE_MODE_IGNORE_DEEP)
 		if shader_file_resource is Shader:
 			var code: String = shader_file_resource.code
@@ -117,12 +120,14 @@ func _inject_clf(shader_files: Array) -> int:
 			var setting_key = current_clf.shader_types.get(shader_type)
 			
 			if !setting_key:
-				shader_file_resource.code = remove_clf_injection(code)
-				ResourceSaver.save(shader_file_resource, shader_file, ResourceSaver.FLAG_REPLACE_SUBRESOURCE_PATHS)
-				var fs_dock = EditorInterface.get_file_system_dock()
-				fs_dock.file_removed.emit(shader_file)
-				var fs = EditorInterface.get_resource_filesystem()
-				fs.reimport_files([shader_file])
+				var boiler_palte = generate_boilerplate()
+				if code.find(boiler_palte) != -1:
+					shader_file_resource.code = code.replace(boiler_palte, "")
+					ResourceSaver.save(shader_file_resource, shader_file, ResourceSaver.FLAG_REPLACE_SUBRESOURCE_PATHS)
+					var fs_dock = EditorInterface.get_file_system_dock()
+					fs_dock.file_removed.emit(shader_file)
+					var fs = EditorInterface.get_resource_filesystem()
+					fs.reimport_files([shader_file])
 				continue
 			
 			# Skip file if it has a light func and replace_existing_light_func is OFF
@@ -169,6 +174,7 @@ func _get_shader_type(code: String) -> String:
 	return ""
 
 func load_settings():
+	_LCLF.button_pressed = current_clf.LCLF
 	_replace_existing_light_functions_checkbox.button_pressed = current_clf.replace_existing_light_functions
 	_shader_type_spatial.button_pressed = current_clf.shader_types.get("spatial")
 	_shader_type_canvas_item.button_pressed = current_clf.shader_types.get("canvas_item")
@@ -177,6 +183,7 @@ func load_settings():
 	_shader_type_fog.button_pressed = current_clf.shader_types.get("fog")
 
 func save_settings():
+	current_clf.LCLF = _LCLF.button_pressed
 	current_clf.replace_existing_light_functions = _replace_existing_light_functions_checkbox.button_pressed
 	current_clf.shader_types.set("spatial", _shader_type_spatial.button_pressed)
 	current_clf.shader_types.set("canvas_item", _shader_type_canvas_item.button_pressed)
@@ -253,3 +260,9 @@ func remove_clf_injection(code: String) -> String:
 	if regex.search(code):
 		code = regex.sub(code, "", true)
 	return code
+
+func is_in_whitelist(path: String) -> bool:
+	for clf in clf_array:
+		if path in clf.whitelist:
+			return true
+	return false

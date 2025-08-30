@@ -1,4 +1,4 @@
 //CGLF include - Test
-void  light() {
+void light() {
 
 }

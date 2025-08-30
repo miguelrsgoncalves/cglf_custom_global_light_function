@@ -8,7 +8,7 @@ var name: String = ""
 
 # Update Shaders Settings ------------- #
 var include_file_path: String = ""
-var ignore_blacklist: bool = false
+var LCLF: bool = false
 var replace_existing_light_functions: bool = false
 
 # Shader Types
@@ -48,7 +48,7 @@ func _save_to_dict() -> Dictionary:
 	return {
 		"name": name,
 		"include_file_path": include_file_path,
-		"ignore_blacklist": ignore_blacklist,
+		"LCLF": LCLF,
 		"replace_existing_light_functions": replace_existing_light_functions,
 		"shader_types": {
 				"spatial": shader_types.get("spatial", false),
@@ -65,7 +65,7 @@ func _save_to_dict() -> Dictionary:
 func _load_from_dict(data: Dictionary) -> void:	
 	name = data.get("name", "")
 	include_file_path = data.get("include_file_path", "")
-	ignore_blacklist = data.get("ignore_blacklist", false)
+	LCLF = data.get("LCLF", false)
 	replace_existing_light_functions = data.get("replace_existing_light_functions", false)
 	shader_types = data.get("shader_types", {
 			"spatial": false,
