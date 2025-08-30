@@ -20,6 +20,8 @@ var _cglf_injection_boiler_plate_ending: String = "\n//CGLF"
 @export var _shader_type_fog: CheckBox = null
 @export var _blacklist: ItemList = null
 @export var _blacklist_input: LineEdit = null
+@export var _whitelist: ItemList = null
+@export var _whitelist_input: LineEdit = null
 
 @export_category("View Nodes")
 @export var _dock_views: TabContainer = null
@@ -48,7 +50,7 @@ func _load_saved_clf() -> void:
 			_dock_views.current_tab = 0
 			_light_function_options_button.selected = current_clf_index
 			current_clf = clf_array[current_clf_index]
-			_fill_blacklist_node()
+			_fill_lists_node()
 		else:
 			_light_function_options_button.disabled = true
 			_dock_views.current_tab = 1
@@ -183,36 +185,11 @@ func _open_cglf_inc():
 func _cglf_copy_path_pressed() -> void:
 	DisplayServer.clipboard_set(current_clf.include_file_path)
 	print("CGLF : CGLF Include file path copied to clipboard!")
-	
-func _cglf_copy_boilerplate(code_injection_path: String = current_clf.include_file_path):
-	DisplayServer.clipboard_set(_cglf_injection_boiler_plate + '#include "' + code_injection_path + '"' + _cglf_injection_boiler_plate_ending)
-	print("CGLF : CGLF Include file injection copied to clipboard! Go ahead and don't use the manager :(")
 
-func add_blacklisted_item():
-	var path = _blacklist_input.text
-	if  path in current_clf.blacklist:
-		print("CGLF: Shader file already blacklisted! You must really hate this one!!")
-		_blacklist_input.clear()
-	elif(!FileAccess.file_exists(path)):
-		print("CGLF: Shader file doesnt exist! It hasn't even been made and you already hate it!!")
-	else:
-		current_clf.blacklist.append(path)
-		_blacklist_input.clear()
-		current_clf.save(current_clf_index)
-		print("CGLF: Shader file blacklisted! Good job!")
-		_fill_blacklist_node()
-
-func _remove_blacklisted_item():
-	var removed_item = _blacklist.get_selected_items()[0]
-	var removed_item_path =  _blacklist.get_item_text(removed_item)
-	_blacklist.remove_item(removed_item)
-	current_clf.blacklist.remove_at(current_clf.blacklist.find(removed_item_path))
-	current_clf.save(current_clf_index)
-
-func _fill_blacklist_node():
-	_blacklist.clear()
-	for item in current_clf.blacklist:
-		_blacklist.add_item(item)
+func generate_boilerplate():
+	var path: String = current_clf.include_file_path
+	var boiler_plate: String = _cglf_injection_boiler_plate + '#include "' + path + '"' + _cglf_injection_boiler_plate_ending
+	return boiler_plate
 
 func _get_shader_type(code: String) -> String:
 	var regex := RegEx.new()
@@ -228,5 +205,56 @@ func _on_filesystemdock_file_selected():
 	if(selected_file_path.contains(".gdshader") && !selected_file_path.contains(".gdshaderinc")):
 		_blacklist_input.text = path
 		_blacklist_input.text_changed.emit(path)
+		_whitelist_input.text = path
+		_blacklist_input.text_changed.emit(path)
 	else:
 		_blacklist_input.clear()
+		_whitelist_input.clear()
+
+func add_blacklisted_item():
+	var path = _blacklist_input.text
+	if  path in current_clf.blacklist:
+		print("CGLF: Shader file already blacklisted! You must really hate this one!!")
+		_blacklist_input.clear()
+	elif(!FileAccess.file_exists(path)):
+		print("CGLF: Shader file doesnt exist! It hasn't even been made and you already hate it!!")
+	else:
+		current_clf.add_list_item("blacklist", path, current_clf_index)
+		_blacklist_input.clear()
+		print("CGLF: Shader file blacklisted! Good job!")
+		_fill_lists_node()
+
+func remove_blacklisted_item():
+	var removed_item = _blacklist.get_selected_items()[0]
+	var removed_item_path =  _blacklist.get_item_text(removed_item)
+	_blacklist.remove_item(removed_item)
+	current_clf.remove_list_item("blacklist", removed_item_path, current_clf_index)
+	print("CGLF: Shader back in business!")
+
+func add_whitelisted_item():
+	var path = _whitelist_input.text
+	if  path in current_clf.whitelist:
+		print("CGLF: Shader file already whitelisted! You must really love this one!!")
+		_whitelist_input.clear()
+	elif(!FileAccess.file_exists(path)):
+		print("CGLF: Shader file doesnt exist! It hasn't even been made and you already love it!!")
+	else:
+		current_clf.add_list_item("whitelist", path, current_clf_index)
+		_whitelist_input.clear()
+		print("CGLF: Shader file whitelisted! Good job!")
+		_fill_lists_node()
+
+func remove_whitelisted_item():
+	var removed_item = _whitelist.get_selected_items()[0]
+	var removed_item_path =  _whitelist.get_item_text(removed_item)
+	_whitelist.remove_item(removed_item)
+	current_clf.remove_list_item("whitelist", removed_item_path, current_clf_index)
+	print("CGLF: Shader no longer among the favorites!")
+
+func _fill_lists_node():
+	_blacklist.clear()
+	_whitelist.clear()
+	for item in current_clf.blacklist:
+		_blacklist.add_item(item)
+	for item in current_clf.whitelist:
+		_whitelist.add_item(item)
