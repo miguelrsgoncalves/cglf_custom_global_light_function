@@ -8,4 +8,4 @@ func _ready() -> void:
 
 func _on_pressed() -> void:
 	DisplayServer.clipboard_set(CGLF.generate_boilerplate())
-	print("CGLF : CGLF Include file injection copied to clipboard! Go ahead and don't use the manager :(")
+	print("CGLF : CGLF Include file injection copied to clipboard! Go ahead not using the manager :(")
