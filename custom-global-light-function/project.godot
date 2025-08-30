@@ -18,7 +18,3 @@ config/features=PackedStringArray("4.4", "Forward Plus")
 
 window/size/viewport_width=500
 window/size/viewport_height=1000
-
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/custom_global_light_function/plugin.cfg")

@@ -8,6 +8,7 @@ var current_clf_index: int = 0
 
 @export_category("Nodes")
 @export var _clf_options_button: OptionButton = null
+@export var _clf_buttons: HBoxContainer = null
 @export var _CLLF: CheckBox = null
 @export var _replace_existing_light_functions_checkbox: CheckBox = null
 @export var _shader_type_spatial: CheckBox = null
@@ -45,16 +46,18 @@ func _load_saved_clf() -> void:
 				index += 1
 			_clf_options_button.disabled = false
 			_dock_views.current_tab = 0
+			_clf_buttons.show()
 			_clf_options_button.selected = current_clf_index
 			current_clf = clf_array[current_clf_index]
 			load_settings()
 		else:
 			_clf_options_button.disabled = true
 			_dock_views.current_tab = 1
+			_clf_buttons.hide()
 	else:
 		_clf_options_button.disabled = true
 		_dock_views.current_tab = 1
-		pass
+		_clf_buttons.hide()
 
 func create_clf(name: String, display_name: String) -> void:
 	CustomLightFunction.new().create({
