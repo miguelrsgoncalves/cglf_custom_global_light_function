@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://b8d1f7wfft7ip"]
+[gd_scene load_steps=34 format=3 uid="uid://b8d1f7wfft7ip"]
 
 [ext_resource type="Script" uid="uid://bojfj581b74xs" path="res://addons/custom_global_light_function/src/cglf_manager.gd" id="1_avgqn"]
 [ext_resource type="Script" uid="uid://mi1jbn4hrph" path="res://addons/custom_global_light_function/src/nodes/add_clf_button.gd" id="2_6jpod"]
@@ -97,8 +97,6 @@ data = {
 [sub_resource type="ImageTexture" id="ImageTexture_dxao7"]
 image = SubResource("Image_5q2qr")
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_muodn"]
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6xf2b"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4lomg"]
@@ -116,13 +114,13 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_avgqn")
 _light_function_options_button = NodePath("VBoxContainer/CLFSelector/HBoxContainer/CLFOptionsButton")
-_ignore_blacklist_checkbox = NodePath("VBoxContainer/Dock Views/CLF View/VBoxContainer/Update shaders Window/VBoxContainer/Ignore Blacklist")
-_replace_existing_light_functions_checkbox = NodePath("VBoxContainer/Dock Views/CLF View/VBoxContainer/Update shaders Window/VBoxContainer/Replace Existing Light Functions2")
-_shader_type_spatial = NodePath("VBoxContainer/Dock Views/CLF View/VBoxContainer/Update shaders Window/VBoxContainer/HBoxContainer/VBoxContainer/Spatial")
-_shader_type_canvas_item = NodePath("VBoxContainer/Dock Views/CLF View/VBoxContainer/Update shaders Window/VBoxContainer/HBoxContainer/VBoxContainer/CanvasItem")
-_shader_type_particles = NodePath("VBoxContainer/Dock Views/CLF View/VBoxContainer/Update shaders Window/VBoxContainer/HBoxContainer/VBoxContainer/Particles")
-_shader_type_sky = NodePath("VBoxContainer/Dock Views/CLF View/VBoxContainer/Update shaders Window/VBoxContainer/HBoxContainer/VBoxContainer/Sky")
-_shader_type_fog = NodePath("VBoxContainer/Dock Views/CLF View/VBoxContainer/Update shaders Window/VBoxContainer/HBoxContainer/VBoxContainer/Fog")
+_ignore_blacklist_checkbox = NodePath("VBoxContainer/Dock Views/CLF View/VBoxContainer/UpdateshadersWindow/VBoxContainer/Ignore Blacklist")
+_replace_existing_light_functions_checkbox = NodePath("VBoxContainer/Dock Views/CLF View/VBoxContainer/UpdateshadersWindow/VBoxContainer/Replace Existing Light Functions2")
+_shader_type_spatial = NodePath("VBoxContainer/Dock Views/CLF View/VBoxContainer/UpdateshadersWindow/VBoxContainer/HBoxContainer/VBoxContainer/Spatial")
+_shader_type_canvas_item = NodePath("VBoxContainer/Dock Views/CLF View/VBoxContainer/UpdateshadersWindow/VBoxContainer/HBoxContainer/VBoxContainer/CanvasItem")
+_shader_type_particles = NodePath("VBoxContainer/Dock Views/CLF View/VBoxContainer/UpdateshadersWindow/VBoxContainer/HBoxContainer/VBoxContainer/Particles")
+_shader_type_sky = NodePath("VBoxContainer/Dock Views/CLF View/VBoxContainer/UpdateshadersWindow/VBoxContainer/HBoxContainer/VBoxContainer/Sky")
+_shader_type_fog = NodePath("VBoxContainer/Dock Views/CLF View/VBoxContainer/UpdateshadersWindow/VBoxContainer/HBoxContainer/VBoxContainer/Fog")
 _blacklist = NodePath("VBoxContainer/Dock Views/CLF View/VBoxContainer/Blacklist/Blacklist Background/List")
 _blacklist_input = NodePath("VBoxContainer/Dock Views/CLF View/VBoxContainer/Blacklist/HBoxContainer/BlacklistInput")
 _dock_views = NodePath("VBoxContainer/Dock Views")
@@ -145,34 +143,41 @@ layout_mode = 2
 [node name="CLFOptionsButton" type="OptionButton" parent="VBoxContainer/CLFSelector/HBoxContainer" node_paths=PackedStringArray("CGLF")]
 layout_mode = 2
 size_flags_horizontal = 3
-tooltip_text = "Currently Selected Light Function"
-disabled = true
+tooltip_text = "Currently Selected CLF"
 text_overrun_behavior = 3
 clip_text = true
+selected = 0
 fit_to_longest_item = false
+item_count = 1
+popup/item_0/text = "Test"
+popup/item_0/id = 0
 script = ExtResource("2_ph7ee")
 CGLF = NodePath("../../../..")
 
 [node name="AddCLFButton" type="Button" parent="VBoxContainer/CLFSelector/HBoxContainer" node_paths=PackedStringArray("_popup")]
 layout_mode = 2
+tooltip_text = "Create new CLF"
 theme_override_styles/normal = SubResource("StyleBoxEmpty_5geas")
 icon = SubResource("ImageTexture_1cy5g")
 script = ExtResource("2_6jpod")
 _popup = NodePath("../AddCLFPopup")
 
-[node name="DeleteCLFButton" type="Button" parent="VBoxContainer/CLFSelector/HBoxContainer" node_paths=PackedStringArray("CGLF")]
+[node name="DeleteCLFButton" type="Button" parent="VBoxContainer/CLFSelector/HBoxContainer" node_paths=PackedStringArray("CGLF", "_accept_dialog")]
 layout_mode = 2
-tooltip_text = "Delete current selected Light Function"
+tooltip_text = "Delete current selected CLF"
 theme_override_styles/normal = SubResource("StyleBoxEmpty_ph7ee")
 icon = SubResource("ImageTexture_kt538")
 script = ExtResource("3_5geas")
 CGLF = NodePath("../../../..")
+_accept_dialog = NodePath("AcceptDialog")
 
 [node name="AcceptDialog" type="AcceptDialog" parent="VBoxContainer/CLFSelector/HBoxContainer/DeleteCLFButton"]
-title = "Delete Light Function"
-size = Vector2i(418, 100)
+title = "Delete CLF"
+initial_position = 5
+size = Vector2i(318, 100)
+popup_window = true
 ok_button_text = "Delete"
-dialog_text = "You really wish to delete the current Light Function?"
+dialog_text = "Do you really wish to delete the current CLF?"
 
 [node name="AddCLFPopup" type="PopupPanel" parent="VBoxContainer/CLFSelector/HBoxContainer" node_paths=PackedStringArray("CGLF", "_clf_name_line_input", "_create_clf_button")]
 title = "CGLF: Create new CLF"
@@ -237,12 +242,11 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_relkf")
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_2g8uf")
-current_tab = 1
+current_tab = 0
 clip_tabs = false
 tabs_visible = false
 
 [node name="CLF View" type="ScrollContainer" parent="VBoxContainer/Dock Views"]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 metadata/_tab_index = 0
@@ -253,10 +257,10 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 24
 
-[node name="CLF Buttons" type="HBoxContainer" parent="VBoxContainer/Dock Views/CLF View/VBoxContainer"]
+[node name="CLFButtons" type="HBoxContainer" parent="VBoxContainer/Dock Views/CLF View/VBoxContainer"]
 layout_mode = 2
 
-[node name="Edit CLF" type="Button" parent="VBoxContainer/Dock Views/CLF View/VBoxContainer/CLF Buttons"]
+[node name="EditCLF" type="Button" parent="VBoxContainer/Dock Views/CLF View/VBoxContainer/CLFButtons"]
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "Open current CLF include file to edit the light function"
@@ -265,65 +269,66 @@ icon = SubResource("ImageTexture_gxcxo")
 text_overrun_behavior = 1
 script = ExtResource("6_g2go8")
 
-[node name="Copy to Clipboard" type="Button" parent="VBoxContainer/Dock Views/CLF View/VBoxContainer/CLF Buttons"]
+[node name="CopyBoilerplateToClipboard" type="Button" parent="VBoxContainer/Dock Views/CLF View/VBoxContainer/CLFButtons"]
 layout_mode = 2
 tooltip_text = "Copies current CLF injection code to the clipboard for manually injection"
 theme_override_styles/normal = SubResource("StyleBoxEmpty_ikwbf")
 icon = SubResource("ImageTexture_6xqv0")
 script = ExtResource("6_72etw")
 
-[node name="Move Up" type="Button" parent="VBoxContainer/Dock Views/CLF View/VBoxContainer/CLF Buttons"]
+[node name="MoveCLFUp" type="Button" parent="VBoxContainer/Dock Views/CLF View/VBoxContainer/CLFButtons"]
 layout_mode = 2
 tooltip_text = "Moves current CLF up in the CLF list"
 theme_override_styles/normal = SubResource("StyleBoxEmpty_ikwbf")
 icon = SubResource("ImageTexture_c8py7")
 script = ExtResource("7_ikwbf")
 
-[node name="Move Down" type="Button" parent="VBoxContainer/Dock Views/CLF View/VBoxContainer/CLF Buttons"]
+[node name="MoveCLFDown" type="Button" parent="VBoxContainer/Dock Views/CLF View/VBoxContainer/CLFButtons"]
 layout_mode = 2
 tooltip_text = "Moves current CLF down in the CLF list"
 theme_override_styles/normal = SubResource("StyleBoxEmpty_ikwbf")
 icon = SubResource("ImageTexture_dxao7")
 script = ExtResource("8_g2go8")
 
-[node name="Update shaders Window" type="VBoxContainer" parent="VBoxContainer/Dock Views/CLF View/VBoxContainer"]
+[node name="UpdateshadersWindow" type="VBoxContainer" parent="VBoxContainer/Dock Views/CLF View/VBoxContainer"]
 layout_mode = 2
 
-[node name="Update Shaders Title" type="RichTextLabel" parent="VBoxContainer/Dock Views/CLF View/VBoxContainer/Update shaders Window"]
+[node name="Title" type="RichTextLabel" parent="VBoxContainer/Dock Views/CLF View/VBoxContainer/UpdateshadersWindow"]
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxEmpty_muodn")
 bbcode_enabled = true
 text = "[b]Update Shaders"
 fit_content = true
 scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Update Shaders" type="Button" parent="VBoxContainer/Dock Views/CLF View/VBoxContainer/Update shaders Window"]
+[node name="InjectShadersButton" type="Button" parent="VBoxContainer/Dock Views/CLF View/VBoxContainer/UpdateshadersWindow"]
 layout_mode = 2
 tooltip_text = "Injects the CGLF Include into all shaders.
 
 If you wish for a shader to not be affected, add it to the blacklist.
 
 An ERROR is thrown for each shader affected, this error is expected and will not cause any isue."
-text = "Update Shaders"
+text = "Inject Shaders"
 text_overrun_behavior = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Dock Views/CLF View/VBoxContainer/Update shaders Window"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Dock Views/CLF View/VBoxContainer/UpdateshadersWindow"]
 layout_mode = 2
 
-[node name="Ignore Blacklist" type="CheckBox" parent="VBoxContainer/Dock Views/CLF View/VBoxContainer/Update shaders Window/VBoxContainer"]
+[node name="Ignore Blacklist" type="CheckBox" parent="VBoxContainer/Dock Views/CLF View/VBoxContainer/UpdateshadersWindow/VBoxContainer"]
 layout_mode = 2
 tooltip_text = "Ignores Blacklist and updates all shaders in the proejct."
 action_mode = 0
 text = "Ignore Blacklist"
 text_overrun_behavior = 3
 
-[node name="Replace Existing Light Functions2" type="CheckBox" parent="VBoxContainer/Dock Views/CLF View/VBoxContainer/Update shaders Window/VBoxContainer"]
+[node name="Replace Existing Light Functions2" type="CheckBox" parent="VBoxContainer/Dock Views/CLF View/VBoxContainer/UpdateshadersWindow/VBoxContainer"]
 layout_mode = 2
 action_mode = 0
 text = "Replace Existing Light Functions"
 text_overrun_behavior = 3
 
-[node name="Shader Types TItle" type="RichTextLabel" parent="VBoxContainer/Dock Views/CLF View/VBoxContainer/Update shaders Window/VBoxContainer"]
+[node name="Shader Types TItle" type="RichTextLabel" parent="VBoxContainer/Dock Views/CLF View/VBoxContainer/UpdateshadersWindow/VBoxContainer"]
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxEmpty_6xf2b")
 bbcode_enabled = true
@@ -331,43 +336,43 @@ text = "[b]Shader Types"
 fit_content = true
 scroll_active = false
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Dock Views/CLF View/VBoxContainer/Update shaders Window/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Dock Views/CLF View/VBoxContainer/UpdateshadersWindow/VBoxContainer"]
 layout_mode = 2
 
-[node name="VSeparator" type="VSeparator" parent="VBoxContainer/Dock Views/CLF View/VBoxContainer/Update shaders Window/VBoxContainer/HBoxContainer"]
+[node name="VSeparator" type="VSeparator" parent="VBoxContainer/Dock Views/CLF View/VBoxContainer/UpdateshadersWindow/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(16, 0)
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Dock Views/CLF View/VBoxContainer/Update shaders Window/VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Dock Views/CLF View/VBoxContainer/UpdateshadersWindow/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Spatial" type="CheckBox" parent="VBoxContainer/Dock Views/CLF View/VBoxContainer/Update shaders Window/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="Spatial" type="CheckBox" parent="VBoxContainer/Dock Views/CLF View/VBoxContainer/UpdateshadersWindow/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 button_pressed = true
 text = "Spatial"
 text_overrun_behavior = 3
 
-[node name="CanvasItem" type="CheckBox" parent="VBoxContainer/Dock Views/CLF View/VBoxContainer/Update shaders Window/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="CanvasItem" type="CheckBox" parent="VBoxContainer/Dock Views/CLF View/VBoxContainer/UpdateshadersWindow/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "CanvasItem"
 text_overrun_behavior = 3
 
-[node name="Particles" type="CheckBox" parent="VBoxContainer/Dock Views/CLF View/VBoxContainer/Update shaders Window/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="Particles" type="CheckBox" parent="VBoxContainer/Dock Views/CLF View/VBoxContainer/UpdateshadersWindow/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Particles"
 text_overrun_behavior = 3
 
-[node name="Sky" type="CheckBox" parent="VBoxContainer/Dock Views/CLF View/VBoxContainer/Update shaders Window/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="Sky" type="CheckBox" parent="VBoxContainer/Dock Views/CLF View/VBoxContainer/UpdateshadersWindow/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Sky"
 text_overrun_behavior = 3
 
-[node name="Fog" type="CheckBox" parent="VBoxContainer/Dock Views/CLF View/VBoxContainer/Update shaders Window/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="Fog" type="CheckBox" parent="VBoxContainer/Dock Views/CLF View/VBoxContainer/UpdateshadersWindow/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Fog"
@@ -393,7 +398,6 @@ size_flags_horizontal = 3
 tooltip_text = "Select a .gdshader file in the File Dock to automatically add the path to the Blacklist input text bar.
 
 Or paste the file path into the input text bar. "
-text = "res://new_shader.gdshader"
 placeholder_text = "Select shader file in File Dock or paste shader file path"
 keep_editing_on_text_submit = true
 emoji_menu_enabled = false
@@ -404,6 +408,7 @@ _add_button = NodePath("../AddBlacklistItem")
 
 [node name="AddBlacklistItem" type="Button" parent="VBoxContainer/Dock Views/CLF View/VBoxContainer/Blacklist/HBoxContainer"]
 layout_mode = 2
+disabled = true
 text = "Add"
 
 [node name="Blacklist Background" type="Panel" parent="VBoxContainer/Dock Views/CLF View/VBoxContainer/Blacklist"]
@@ -418,6 +423,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+item_count = 1
+item_0/text = "res://new_shader.gdshader"
 
 [node name="Remove Blacklisted Item" type="Button" parent="VBoxContainer/Dock Views/CLF View/VBoxContainer/Blacklist"]
 layout_mode = 2
@@ -425,6 +432,7 @@ text = "Remove"
 text_overrun_behavior = 3
 
 [node name="No CLF View" type="PanelContainer" parent="VBoxContainer/Dock Views"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_g2go8")
@@ -434,7 +442,7 @@ metadata/_tab_index = 1
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxEmpty_ftocf")
 bbcode_enabled = true
-text = "No CLF selected
+text = "No CLF
 Create a new one using the menu above"
 fit_content = true
 scroll_active = false
@@ -444,24 +452,25 @@ vertical_alignment = 1
 [connection signal="item_selected" from="VBoxContainer/CLFSelector/HBoxContainer/CLFOptionsButton" to="VBoxContainer/CLFSelector/HBoxContainer/CLFOptionsButton" method="_on_item_selected"]
 [connection signal="pressed" from="VBoxContainer/CLFSelector/HBoxContainer/AddCLFButton" to="VBoxContainer/CLFSelector/HBoxContainer/AddCLFButton" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/CLFSelector/HBoxContainer/DeleteCLFButton" to="VBoxContainer/CLFSelector/HBoxContainer/DeleteCLFButton" method="_on_pressed"]
+[connection signal="confirmed" from="VBoxContainer/CLFSelector/HBoxContainer/DeleteCLFButton/AcceptDialog" to="VBoxContainer/CLFSelector/HBoxContainer/DeleteCLFButton" method="_on_accept_dialog_confirmed"]
 [connection signal="focus_entered" from="VBoxContainer/CLFSelector/HBoxContainer/AddCLFPopup" to="VBoxContainer/CLFSelector/HBoxContainer/AddCLFPopup" method="_on_focus_entered"]
 [connection signal="popup_hide" from="VBoxContainer/CLFSelector/HBoxContainer/AddCLFPopup" to="VBoxContainer/CLFSelector/HBoxContainer/AddCLFPopup" method="_on_popup_hide"]
 [connection signal="text_changed" from="VBoxContainer/CLFSelector/HBoxContainer/AddCLFPopup/VBoxContainer/CLFNameLineInput" to="VBoxContainer/CLFSelector/HBoxContainer/AddCLFPopup" method="_on_light_function_name_input_text_changed"]
 [connection signal="text_submitted" from="VBoxContainer/CLFSelector/HBoxContainer/AddCLFPopup/VBoxContainer/CLFNameLineInput" to="VBoxContainer/CLFSelector/HBoxContainer/AddCLFPopup" method="_on_light_function_name_input_text_submitted"]
 [connection signal="pressed" from="VBoxContainer/CLFSelector/HBoxContainer/AddCLFPopup/VBoxContainer/HBoxContainer/CreateCLFButton" to="VBoxContainer/CLFSelector/HBoxContainer/AddCLFPopup" method="_on_create_light_function_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/CLFSelector/HBoxContainer/AddCLFPopup/VBoxContainer/HBoxContainer/CancelCLFCreationButton" to="VBoxContainer/CLFSelector/HBoxContainer/AddCLFPopup" method="_on_cancel_light_function_creation_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/Dock Views/CLF View/VBoxContainer/CLF Buttons/Edit CLF" to="." method="_open_cglf_inc"]
-[connection signal="pressed" from="VBoxContainer/Dock Views/CLF View/VBoxContainer/CLF Buttons/Copy to Clipboard" to="." method="_cglf_copy_boilerplate"]
-[connection signal="pressed" from="VBoxContainer/Dock Views/CLF View/VBoxContainer/CLF Buttons/Move Up" to="." method="_cglf_copy_boilerplate"]
-[connection signal="pressed" from="VBoxContainer/Dock Views/CLF View/VBoxContainer/CLF Buttons/Move Down" to="." method="_cglf_copy_boilerplate"]
-[connection signal="pressed" from="VBoxContainer/Dock Views/CLF View/VBoxContainer/Update shaders Window/Update Shaders" to="." method="_update_shaders"]
-[connection signal="pressed" from="VBoxContainer/Dock Views/CLF View/VBoxContainer/Update shaders Window/VBoxContainer/Ignore Blacklist" to="." method="_on_ignore_blacklist_pressed"]
-[connection signal="pressed" from="VBoxContainer/Dock Views/CLF View/VBoxContainer/Update shaders Window/VBoxContainer/Replace Existing Light Functions2" to="." method="_on_replace_existing_light_functions_pressed"]
-[connection signal="pressed" from="VBoxContainer/Dock Views/CLF View/VBoxContainer/Update shaders Window/VBoxContainer/HBoxContainer/VBoxContainer/Spatial" to="." method="_on_spatial_pressed"]
-[connection signal="pressed" from="VBoxContainer/Dock Views/CLF View/VBoxContainer/Update shaders Window/VBoxContainer/HBoxContainer/VBoxContainer/CanvasItem" to="." method="_on_canvas_item_pressed"]
-[connection signal="pressed" from="VBoxContainer/Dock Views/CLF View/VBoxContainer/Update shaders Window/VBoxContainer/HBoxContainer/VBoxContainer/Particles" to="." method="_on_particles_pressed"]
-[connection signal="pressed" from="VBoxContainer/Dock Views/CLF View/VBoxContainer/Update shaders Window/VBoxContainer/HBoxContainer/VBoxContainer/Sky" to="." method="_on_sky_pressed"]
-[connection signal="pressed" from="VBoxContainer/Dock Views/CLF View/VBoxContainer/Update shaders Window/VBoxContainer/HBoxContainer/VBoxContainer/Fog" to="." method="_on_fog_pressed"]
+[connection signal="pressed" from="VBoxContainer/Dock Views/CLF View/VBoxContainer/CLFButtons/EditCLF" to="." method="_open_cglf_inc"]
+[connection signal="pressed" from="VBoxContainer/Dock Views/CLF View/VBoxContainer/CLFButtons/CopyBoilerplateToClipboard" to="." method="_cglf_copy_boilerplate"]
+[connection signal="pressed" from="VBoxContainer/Dock Views/CLF View/VBoxContainer/CLFButtons/MoveCLFUp" to="." method="_cglf_copy_boilerplate"]
+[connection signal="pressed" from="VBoxContainer/Dock Views/CLF View/VBoxContainer/CLFButtons/MoveCLFDown" to="." method="_cglf_copy_boilerplate"]
+[connection signal="pressed" from="VBoxContainer/Dock Views/CLF View/VBoxContainer/UpdateshadersWindow/InjectShadersButton" to="." method="_update_shaders"]
+[connection signal="pressed" from="VBoxContainer/Dock Views/CLF View/VBoxContainer/UpdateshadersWindow/VBoxContainer/Ignore Blacklist" to="." method="_on_ignore_blacklist_pressed"]
+[connection signal="pressed" from="VBoxContainer/Dock Views/CLF View/VBoxContainer/UpdateshadersWindow/VBoxContainer/Replace Existing Light Functions2" to="." method="_on_replace_existing_light_functions_pressed"]
+[connection signal="pressed" from="VBoxContainer/Dock Views/CLF View/VBoxContainer/UpdateshadersWindow/VBoxContainer/HBoxContainer/VBoxContainer/Spatial" to="." method="_on_spatial_pressed"]
+[connection signal="pressed" from="VBoxContainer/Dock Views/CLF View/VBoxContainer/UpdateshadersWindow/VBoxContainer/HBoxContainer/VBoxContainer/CanvasItem" to="." method="_on_canvas_item_pressed"]
+[connection signal="pressed" from="VBoxContainer/Dock Views/CLF View/VBoxContainer/UpdateshadersWindow/VBoxContainer/HBoxContainer/VBoxContainer/Particles" to="." method="_on_particles_pressed"]
+[connection signal="pressed" from="VBoxContainer/Dock Views/CLF View/VBoxContainer/UpdateshadersWindow/VBoxContainer/HBoxContainer/VBoxContainer/Sky" to="." method="_on_sky_pressed"]
+[connection signal="pressed" from="VBoxContainer/Dock Views/CLF View/VBoxContainer/UpdateshadersWindow/VBoxContainer/HBoxContainer/VBoxContainer/Fog" to="." method="_on_fog_pressed"]
 [connection signal="text_changed" from="VBoxContainer/Dock Views/CLF View/VBoxContainer/Blacklist/HBoxContainer/BlacklistInput" to="VBoxContainer/Dock Views/CLF View/VBoxContainer/Blacklist/HBoxContainer/BlacklistInput" method="_on_text_changed"]
 [connection signal="text_submitted" from="VBoxContainer/Dock Views/CLF View/VBoxContainer/Blacklist/HBoxContainer/BlacklistInput" to="VBoxContainer/Dock Views/CLF View/VBoxContainer/Blacklist/HBoxContainer/BlacklistInput" method="_on_text_submitted"]
 [connection signal="pressed" from="VBoxContainer/Dock Views/CLF View/VBoxContainer/Blacklist/HBoxContainer/AddBlacklistItem" to="." method="add_blacklisted_item"]

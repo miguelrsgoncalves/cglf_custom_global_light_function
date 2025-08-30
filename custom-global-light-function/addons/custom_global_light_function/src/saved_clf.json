@@ -11,9 +11,7 @@
 			"sky": false,
 			"fog": false
 		},
-		"blacklist": [
-			"res://new_shader.gdshader"
-		],
+		"blacklist": [],
 		"whitelist": []
 	}
 ]
