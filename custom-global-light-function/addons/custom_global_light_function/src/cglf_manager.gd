@@ -242,6 +242,9 @@ func add_whitelisted_item():
 	if  path in current_clf.whitelist:
 		print("CGLF: Shader file already whitelisted! You must really love this one!!")
 		_whitelist_input.clear()
+	elif is_in_whitelist(path):
+		print("CGLF: Shader already belongs to another CLF! No luck for this one :(")
+		_whitelist_input.clear()
 	elif(!FileAccess.file_exists(path)):
 		print("CGLF: Shader file doesnt exist! It hasn't even been made and you already love it!!")
 	else:

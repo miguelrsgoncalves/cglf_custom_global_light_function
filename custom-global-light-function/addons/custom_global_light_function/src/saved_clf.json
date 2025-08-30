@@ -5,24 +5,7 @@
 		"CLLF": false,
 		"replace_existing_light_functions": false,
 		"shader_types": {
-			"spatial": false,
-			"canvas_item": false,
-			"particles": false,
-			"sky": false,
-			"fog": false
-		},
-		"blacklist": [
-			"res://new_shader.gdshader"
-		],
-		"whitelist": []
-	},
-	{
-		"name": "Test 2",
-		"include_file_path": "res://addons/custom_global_light_function/src/clf_include_files/test2.gdshaderinc",
-		"CLLF": false,
-		"replace_existing_light_functions": false,
-		"shader_types": {
-			"spatial": false,
+			"spatial": true,
 			"canvas_item": false,
 			"particles": false,
 			"sky": false,
@@ -30,5 +13,22 @@
 		},
 		"blacklist": [],
 		"whitelist": []
+	},
+	{
+		"name": "Test 2",
+		"include_file_path": "res://addons/custom_global_light_function/src/clf_include_files/test2.gdshaderinc",
+		"CLLF": true,
+		"replace_existing_light_functions": false,
+		"shader_types": {
+			"spatial": true,
+			"canvas_item": false,
+			"particles": false,
+			"sky": false,
+			"fog": false
+		},
+		"blacklist": [],
+		"whitelist": [
+			"res://new_shader.gdshader"
+		]
 	}
 ]
