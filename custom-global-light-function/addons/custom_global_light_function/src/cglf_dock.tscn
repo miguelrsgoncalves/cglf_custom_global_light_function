@@ -378,7 +378,6 @@ size_flags_horizontal = 3
 tooltip_text = "Select a .gdshader file in the File Dock to automatically add the path to the Blacklist input text bar.
 
 Or paste the file path into the input text bar. "
-text = "res://new_shader.gdshader"
 placeholder_text = "Select shader file in File Dock or paste shader file path"
 keep_editing_on_text_submit = true
 emoji_menu_enabled = false
@@ -389,6 +388,7 @@ _add_button = NodePath("../AddBlacklistItem")
 
 [node name="AddBlacklistItem" type="Button" parent="VBoxContainer/Dock Views/CLFView/VBoxContainer/Blacklist/HBoxContainer"]
 layout_mode = 2
+disabled = true
 text = "Add"
 
 [node name="BlacklistBackground" type="Panel" parent="VBoxContainer/Dock Views/CLFView/VBoxContainer/Blacklist"]
@@ -431,7 +431,6 @@ size_flags_horizontal = 3
 tooltip_text = "Select a .gdshader file in the File Dock to automatically add the path to the Blacklist input text bar.
 
 Or paste the file path into the input text bar. "
-text = "res://new_shader.gdshader"
 placeholder_text = "Select shader file in File Dock or paste shader file path"
 keep_editing_on_text_submit = true
 emoji_menu_enabled = false
@@ -442,6 +441,7 @@ _add_button = NodePath("../AddWhitelistItem")
 
 [node name="AddWhitelistItem" type="Button" parent="VBoxContainer/Dock Views/CLFView/VBoxContainer/Whitelist/HBoxContainer"]
 layout_mode = 2
+disabled = true
 text = "Add"
 
 [node name="WhitelistBackground" type="Panel" parent="VBoxContainer/Dock Views/CLFView/VBoxContainer/Whitelist"]

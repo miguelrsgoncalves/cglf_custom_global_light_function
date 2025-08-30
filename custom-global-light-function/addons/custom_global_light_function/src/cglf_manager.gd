@@ -82,7 +82,11 @@ func inject_shaders() -> void:
 	var shader_files = _find_shader_files("res://")
 	if shader_files.size() > 0:
 		print("CGLF: The following ERRORS, one per shader file injected, are expected and are part of the inner works of the plugin! Didn't find a way to not make them appear :(")
-		var files_injected: int = _inject_clf(shader_files)
+		var files_injected: int = 0
+		if !current_clf.LCLF:
+			files_injected = _inject_clf(shader_files)
+		else:
+			files_injected = _inject_clf(current_clf.whitelist)
 		if files_injected > 0:
 			print("CGLF: Injected CLF into ", files_injected, " shaders!")
 		else:
