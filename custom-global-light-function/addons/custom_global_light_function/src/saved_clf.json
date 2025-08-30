@@ -2,7 +2,7 @@
 	{
 		"name": "Test",
 		"include_file_path": "res://addons/custom_global_light_function/src/clf_include_files/test.gdshaderinc",
-		"CLLF": true,
+		"CLLF": false,
 		"replace_existing_light_functions": false,
 		"shader_types": {
 			"spatial": false,
@@ -10,21 +10,6 @@
 			"particles": false,
 			"sky": false,
 			"fog": false
-		},
-		"blacklist": [],
-		"whitelist": []
-	},
-	{
-		"name": "Test 2",
-		"include_file_path": "res://addons/custom_global_light_function/src/clf_include_files/test2.gdshaderinc",
-		"CLLF": false,
-		"replace_existing_light_functions": false,
-		"shader_types": {
-			"spatial": true,
-			"canvas_item": true,
-			"particles": true,
-			"sky": true,
-			"fog": true
 		},
 		"blacklist": [],
 		"whitelist": []

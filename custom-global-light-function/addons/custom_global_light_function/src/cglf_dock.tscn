@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://b8d1f7wfft7ip"]
+[gd_scene load_steps=26 format=3 uid="uid://b8d1f7wfft7ip"]
 
 [ext_resource type="Script" uid="uid://bojfj581b74xs" path="res://addons/custom_global_light_function/src/cglf_manager.gd" id="1_avgqn"]
 [ext_resource type="Script" uid="uid://mi1jbn4hrph" path="res://addons/custom_global_light_function/src/nodes/add_clf_button.gd" id="2_6jpod"]
@@ -39,8 +39,6 @@ data = {
 
 [sub_resource type="ImageTexture" id="ImageTexture_dwgxc"]
 image = SubResource("Image_1cy5g")
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_72etw"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_relkf"]
 
@@ -139,7 +137,7 @@ _popup = NodePath("../AddCLFPopup")
 
 [node name="DeleteCLFButton" type="Button" parent="VBoxContainer/CLFSelector/HBoxContainer" node_paths=PackedStringArray("CGLF", "_accept_dialog")]
 layout_mode = 2
-tooltip_text = "Delete current selected CLF"
+tooltip_text = "Delete currently selected CLF"
 theme_override_styles/normal = SubResource("StyleBoxEmpty_ph7ee")
 icon = SubResource("ImageTexture_dwgxc")
 script = ExtResource("3_5geas")
@@ -154,21 +152,22 @@ popup_window = true
 ok_button_text = "Delete"
 dialog_text = "Do you really wish to delete the current CLF?"
 
-[node name="AddCLFPopup" type="PopupPanel" parent="VBoxContainer/CLFSelector/HBoxContainer" node_paths=PackedStringArray("CGLF", "_clf_name_line_input", "_create_clf_button")]
+[node name="AddCLFPopup" type="PopupPanel" parent="VBoxContainer/CLFSelector/HBoxContainer" node_paths=PackedStringArray("CGLF", "_clf_name_line_input", "_warning_label", "_create_clf_button")]
 title = "CGLF: Create new CLF"
 initial_position = 5
-size = Vector2i(500, 102)
+size = Vector2i(500, 125)
 borderless = false
 script = ExtResource("4_relkf")
 CGLF = NodePath("../../../..")
 _clf_name_line_input = NodePath("VBoxContainer/CLFNameLineInput")
+_warning_label = NodePath("VBoxContainer/Warning")
 _create_clf_button = NodePath("VBoxContainer/HBoxContainer/CreateCLFButton")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/CLFSelector/HBoxContainer/AddCLFPopup"]
 offset_left = 9.0
 offset_top = 9.0
 offset_right = 491.0
-offset_bottom = 93.0
+offset_bottom = 116.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -179,10 +178,12 @@ keep_editing_on_text_submit = true
 emoji_menu_enabled = false
 clear_button_enabled = true
 
-[node name="HSeparator" type="HSeparator" parent="VBoxContainer/CLFSelector/HBoxContainer/AddCLFPopup/VBoxContainer"]
+[node name="Warning" type="Label" parent="VBoxContainer/CLFSelector/HBoxContainer/AddCLFPopup/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 16
-theme_override_styles/separator = SubResource("StyleBoxEmpty_72etw")
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/CLFSelector/HBoxContainer/AddCLFPopup/VBoxContainer"]
 layout_mode = 2
@@ -259,11 +260,12 @@ layout_mode = 2
 
 [node name="InjectShadersButton" type="Button" parent="VBoxContainer/Dock Views/CLFView/VBoxContainer/UpdateshadersWindow"]
 layout_mode = 2
-tooltip_text = "Injects the CGLF Include into all shaders.
+tooltip_text = "Injects the CLF Include into all shaders.
 
 If you wish for a shader to not be affected, add it to the blacklist.
 
-An ERROR is thrown for each shader affected, this error is expected and will not cause any isue."
+An ERROR is thrown for each shader affected, this error is expected and will not cause any issue."
+theme_type_variation = &"PanelBackgroundButton"
 text = "Inject Shaders"
 text_overrun_behavior = 3
 
@@ -276,7 +278,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="VBoxContainer/Dock Views/CLFView/VBoxContainer/UpdateshadersWindow/VBoxContainer/HBoxContainer4"]
 layout_mode = 2
 size_flags_horizontal = 3
-tooltip_text = "Converts the current CLF into a CLLF (Custom Local Light Function), which means it will no longer affect shaders globaly and only affect shader files that have been whitelisted. These whitelisted shaders will only be available to this CLF.
+tooltip_text = "Converts the current CLF into a CLLF (Custom Local Light Function), which means it will no longer affect shaders globaly and only affect shader files that have been whitelisted.
 
 This also allows the CLLF to have the same shader types as other CLF."
 mouse_filter = 0
@@ -364,6 +366,9 @@ layout_mode = 2
 [node name="BlacklistTitle" type="RichTextLabel" parent="VBoxContainer/Dock Views/CLFView/VBoxContainer/Blacklist"]
 clip_contents = false
 layout_mode = 2
+tooltip_text = "Shaders in the blacklist will not be injected by the current CLF.
+
+The blacklist has priority over the whitelist."
 bbcode_enabled = true
 text = "[b]Blacklist"
 fit_content = true
@@ -380,7 +385,6 @@ size_flags_horizontal = 3
 tooltip_text = "Select a .gdshader file in the File Dock to automatically add the path to the Blacklist input text bar.
 
 Or paste the file path into the input text bar. "
-text = "res://new_shader.gdshader"
 placeholder_text = "Select shader file in File Dock or paste shader file path"
 keep_editing_on_text_submit = true
 emoji_menu_enabled = false
@@ -391,6 +395,8 @@ _add_button = NodePath("../AddBlacklistItem")
 
 [node name="AddBlacklistItem" type="Button" parent="VBoxContainer/Dock Views/CLFView/VBoxContainer/Blacklist/HBoxContainer"]
 layout_mode = 2
+tooltip_text = "Adds the shader in the input to the left to the blacklist. This makes the current CLF unable to inject the shader."
+disabled = true
 text = "Add"
 
 [node name="BlacklistBackground" type="Panel" parent="VBoxContainer/Dock Views/CLFView/VBoxContainer/Blacklist"]
@@ -405,11 +411,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+tooltip_text = "List of shaders blacklisted from the current CLF."
 item_count = 1
 item_0/text = "res://new_shader.gdshader"
 
 [node name="RemoveBlacklistedItem" type="Button" parent="VBoxContainer/Dock Views/CLFView/VBoxContainer/Blacklist"]
 layout_mode = 2
+tooltip_text = "Removes currently selected shader from the blacklist."
+theme_type_variation = &"PanelBackgroundButton"
 text = "Remove"
 text_overrun_behavior = 3
 
@@ -419,6 +428,9 @@ layout_mode = 2
 [node name="WhitelistTitle" type="RichTextLabel" parent="VBoxContainer/Dock Views/CLFView/VBoxContainer/Whitelist"]
 clip_contents = false
 layout_mode = 2
+tooltip_text = "Shaders in the whitelist become ownerd by the CLF that owns the whitelist.
+
+No other CLF  can own the shader. This can be used to create seperate environments where only one CLF can affect the chosen shaders."
 bbcode_enabled = true
 text = "[b]Whitelist"
 fit_content = true
@@ -432,10 +444,9 @@ layout_mode = 2
 [node name="WhitelistInput" type="LineEdit" parent="VBoxContainer/Dock Views/CLFView/VBoxContainer/Whitelist/HBoxContainer" node_paths=PackedStringArray("_CGLF", "_add_button")]
 layout_mode = 2
 size_flags_horizontal = 3
-tooltip_text = "Select a .gdshader file in the File Dock to automatically add the path to the Blacklist input text bar.
+tooltip_text = "Select a .gdshader file in the File Dock to automatically add the path to the Whitelist input text bar.
 
 Or paste the file path into the input text bar. "
-text = "res://new_shader.gdshader"
 placeholder_text = "Select shader file in File Dock or paste shader file path"
 keep_editing_on_text_submit = true
 emoji_menu_enabled = false
@@ -446,6 +457,8 @@ _add_button = NodePath("../AddWhitelistItem")
 
 [node name="AddWhitelistItem" type="Button" parent="VBoxContainer/Dock Views/CLFView/VBoxContainer/Whitelist/HBoxContainer"]
 layout_mode = 2
+tooltip_text = "Adds the shader in the input to the left to the whitelist. This makes the shader exclusive to the current CLF."
+disabled = true
 text = "Add"
 
 [node name="WhitelistBackground" type="Panel" parent="VBoxContainer/Dock Views/CLFView/VBoxContainer/Whitelist"]
@@ -460,9 +473,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+tooltip_text = "List of shaders whitelisted by the current CLF."
 
 [node name="RemoveWhitelistedItem" type="Button" parent="VBoxContainer/Dock Views/CLFView/VBoxContainer/Whitelist"]
 layout_mode = 2
+tooltip_text = "Removes currently selected shader from the whitelist."
+theme_type_variation = &"PanelBackgroundButton"
 text = "Remove"
 text_overrun_behavior = 3
 
@@ -490,10 +506,10 @@ vertical_alignment = 1
 [connection signal="confirmed" from="VBoxContainer/CLFSelector/HBoxContainer/DeleteCLFButton/AcceptDialog" to="VBoxContainer/CLFSelector/HBoxContainer/DeleteCLFButton" method="_on_accept_dialog_confirmed"]
 [connection signal="focus_entered" from="VBoxContainer/CLFSelector/HBoxContainer/AddCLFPopup" to="VBoxContainer/CLFSelector/HBoxContainer/AddCLFPopup" method="_on_focus_entered"]
 [connection signal="popup_hide" from="VBoxContainer/CLFSelector/HBoxContainer/AddCLFPopup" to="VBoxContainer/CLFSelector/HBoxContainer/AddCLFPopup" method="_on_popup_hide"]
-[connection signal="text_changed" from="VBoxContainer/CLFSelector/HBoxContainer/AddCLFPopup/VBoxContainer/CLFNameLineInput" to="VBoxContainer/CLFSelector/HBoxContainer/AddCLFPopup" method="_on_light_function_name_input_text_changed"]
-[connection signal="text_submitted" from="VBoxContainer/CLFSelector/HBoxContainer/AddCLFPopup/VBoxContainer/CLFNameLineInput" to="VBoxContainer/CLFSelector/HBoxContainer/AddCLFPopup" method="_on_light_function_name_input_text_submitted"]
-[connection signal="pressed" from="VBoxContainer/CLFSelector/HBoxContainer/AddCLFPopup/VBoxContainer/HBoxContainer/CreateCLFButton" to="VBoxContainer/CLFSelector/HBoxContainer/AddCLFPopup" method="_on_create_light_function_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/CLFSelector/HBoxContainer/AddCLFPopup/VBoxContainer/HBoxContainer/CancelCLFCreationButton" to="VBoxContainer/CLFSelector/HBoxContainer/AddCLFPopup" method="_on_cancel_light_function_creation_button_pressed"]
+[connection signal="text_changed" from="VBoxContainer/CLFSelector/HBoxContainer/AddCLFPopup/VBoxContainer/CLFNameLineInput" to="VBoxContainer/CLFSelector/HBoxContainer/AddCLFPopup" method="_on_clf_name_input_text_changed"]
+[connection signal="text_submitted" from="VBoxContainer/CLFSelector/HBoxContainer/AddCLFPopup/VBoxContainer/CLFNameLineInput" to="VBoxContainer/CLFSelector/HBoxContainer/AddCLFPopup" method="_on_clf_name_input_text_submitted"]
+[connection signal="pressed" from="VBoxContainer/CLFSelector/HBoxContainer/AddCLFPopup/VBoxContainer/HBoxContainer/CreateCLFButton" to="VBoxContainer/CLFSelector/HBoxContainer/AddCLFPopup" method="_on_create_clf_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/CLFSelector/HBoxContainer/AddCLFPopup/VBoxContainer/HBoxContainer/CancelCLFCreationButton" to="VBoxContainer/CLFSelector/HBoxContainer/AddCLFPopup" method="_on_cancel_clf_creation_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Dock Views/CLFView/VBoxContainer/CLFButtons/EditCLF" to="VBoxContainer/Dock Views/CLFView/VBoxContainer/CLFButtons/EditCLF" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/Dock Views/CLFView/VBoxContainer/CLFButtons/CopyBoilerplateToClipboard" to="VBoxContainer/Dock Views/CLFView/VBoxContainer/CLFButtons/CopyBoilerplateToClipboard" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/Dock Views/CLFView/VBoxContainer/UpdateshadersWindow/InjectShadersButton" to="." method="inject_shaders"]

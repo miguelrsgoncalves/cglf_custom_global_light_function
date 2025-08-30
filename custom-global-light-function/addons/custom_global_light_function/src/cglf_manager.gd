@@ -56,14 +56,9 @@ func _load_saved_clf() -> void:
 		_dock_views.current_tab = 1
 		pass
 
-func create_clf(name: String) -> void:
-	var _split_name = name.split("_")
-	var _split_name_capitulized: PackedStringArray = []
-	for word in _split_name:
-		_split_name_capitulized.append(word.capitalize())
-	var _name_capitalized = " ".join(_split_name_capitulized)
+func create_clf(name: String, display_name: String) -> void:
 	CustomLightFunction.new().create({
-		"name": _name_capitalized,
+		"name": display_name,
 		"include_file_path": CGLF_GV.clf_include_files_folder_path + name + ".gdshaderinc",
 	}, clf_array.size())
 	current_clf_index = _clf_options_button.item_count
@@ -313,3 +308,11 @@ func is_shader_type_used(type: String) -> bool:
 			return true
 		index += 1
 	return false
+
+func generate_display_name(name: String) -> String:
+	var _split_name = name.split("_")
+	var _split_name_capitulized: PackedStringArray = []
+	for word in _split_name:
+		_split_name_capitulized.append(word.capitalize())
+	var _name_capitalized = " ".join(_split_name_capitulized)
+	return _name_capitalized
