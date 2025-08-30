@@ -8,7 +8,7 @@ var current_clf_index: int = 0
 
 @export_category("Nodes")
 @export var _clf_options_button: OptionButton = null
-@export var _LCLF: CheckBox = null
+@export var _CLLF: CheckBox = null
 @export var _replace_existing_light_functions_checkbox: CheckBox = null
 @export var _shader_type_spatial: CheckBox = null
 @export var _shader_type_canvas_item: CheckBox = null
@@ -83,7 +83,7 @@ func inject_shaders() -> void:
 	if shader_files.size() > 0:
 		print("CGLF: The following ERRORS, one per shader file injected, are expected and are part of the inner works of the plugin! Didn't find a way to not make them appear :(")
 		var files_injected: int = 0
-		if !current_clf.LCLF:
+		if !current_clf.CLLF:
 			files_injected = _inject_clf(shader_files)
 		else:
 			files_injected = _inject_clf(current_clf.whitelist)
@@ -178,7 +178,7 @@ func _get_shader_type(code: String) -> String:
 	return ""
 
 func load_settings():
-	_LCLF.button_pressed = current_clf.LCLF
+	_CLLF.button_pressed = current_clf.CLLF
 	_replace_existing_light_functions_checkbox.button_pressed = current_clf.replace_existing_light_functions
 	_shader_type_spatial.button_pressed = current_clf.shader_types.get("spatial")
 	_shader_type_canvas_item.button_pressed = current_clf.shader_types.get("canvas_item")
@@ -187,7 +187,7 @@ func load_settings():
 	_shader_type_fog.button_pressed = current_clf.shader_types.get("fog")
 
 func save_settings():
-	current_clf.LCLF = _LCLF.button_pressed
+	current_clf.CLLF = _CLLF.button_pressed
 	current_clf.replace_existing_light_functions = _replace_existing_light_functions_checkbox.button_pressed
 	current_clf.shader_types.set("spatial", _shader_type_spatial.button_pressed)
 	current_clf.shader_types.set("canvas_item", _shader_type_canvas_item.button_pressed)
