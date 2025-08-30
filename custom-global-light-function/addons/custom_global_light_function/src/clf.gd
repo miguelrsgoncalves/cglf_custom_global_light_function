@@ -2,16 +2,16 @@
 class_name CustomLightFunction
 extends RefCounted
 
-## General
+# General
 
 var name: String = ""
 
-## Update Shaders Settings ------------- ##
+# Update Shaders Settings ------------- #
 var include_file_path: String = ""
 var ignore_blacklist: bool = false
 var replace_existing_light_functions: bool = false
 
-## Shader Types
+# Shader Types
 var shader_types: Dictionary = {
 		"spatial": false,
 		"canvas_item": false,
@@ -20,15 +20,22 @@ var shader_types: Dictionary = {
 		"fog": false
 }
 
-## Lists
+# Lists
 var blacklist: PackedStringArray = []
 var whitelist: PackedStringArray = []
-##-------------------------------------- ##
+#-------------------------------------- #
 
 ## Creates a new CLF object and saves it to Saved GLF
 func create(dict: Dictionary, index: int) -> CustomLightFunction:
 	_load_from_dict(dict)
+	if not FileAccess.file_exists(include_file_path):
+		DirAccess.open("res://").make_dir_recursive(CGLF_GV.clf_include_files_folder_path)
+		var file := FileAccess.open(include_file_path, FileAccess.WRITE)
+		var file_boilerplate: String = CGLF_GV.clf_include_boilerplate + name + "\nvoid light() {\n\n}"
+		file.store_string(file_boilerplate)
+		file.close()
 	save(index)
+	print("CGLF: New Light Function created with name: ", name)
 	return self
 
 ## Creates CLF object
@@ -107,4 +114,24 @@ func delete(index: int) -> void:
 	data.remove_at(index)
 	file = FileAccess.open(CGLF_GV.saved_clf_file_path, FileAccess.WRITE)
 	file.store_string(JSON.stringify(data, "\t", false))
+	OS.move_to_trash(ProjectSettings.globalize_path(include_file_path))
 	file.close()
+	print("CGLF: Deleted Light Function with name: ", name)
+
+## Adds an item to one of the lists: blacklist or whitelist
+func add_list_item(list: String, path: String, index: int):
+	if list == "blacklist":
+		blacklist.append(path)
+	elif list == "whitelist":
+		whitelist.append(path)
+	else: push_error("CGLF: No list found with name: ", list)
+	save(index)
+
+## Removes an item to one of the lists: blacklist or whitelist
+func remove_list_item(list: String, path: String, index: int):
+	if list == "blacklist":
+		blacklist.remove_at(blacklist.find(path))
+	elif list == "whitelist":
+		whitelist.remove_at(whitelist.find(path))
+	else: push_error("CGLF: No list found with name: ", list)
+	save(index)
