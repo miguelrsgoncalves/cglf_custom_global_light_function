@@ -13,6 +13,8 @@ config_version=5
 config/name="CGLF-Custom-Global-Light-Function"
 config/version="1.0.0"
 config/features=PackedStringArray("4.4", "Forward Plus")
+boot_splash/image="uid://cqrrwva1j1ys2"
+config/icon="uid://cqrrwva1j1ys2"
 
 [display]
 
