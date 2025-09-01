@@ -11,10 +11,11 @@ Provides a manager to define and customize a single centralized custom global li
 ## Features
 - Define a global `light()` function once and reuse it everywhere.
 - Easily managed through the plugin dock.
+- Create as many `light()` profiles as desired, called CLF (Custom Light Function).
 - Choose which shader types get affected.
-- Optionally replace existing `light()` functions automatically.
-- Blacklist for shader files not meant to be affected by CGLF.
-- Currently only .gdshader files are supported.
+- CLLF (Custom Local Light Function) allows for smaller, isolated environments where one `light()` affects only desired shaders.
+- Blacklist for shader files not meant to be affected by CLF.
+- Currently only `.gdshader` files are supported.
 
 ## Installation
 
@@ -26,20 +27,21 @@ Provides a manager to define and customize a single centralized custom global li
 ### B — Repository
 
 1. Download or clone this repository.
-2. Copy the `addons/custom_global_light_function` folder into your Godot project.
+2. Copy the `addons/cglf_custom_global_light_function` folder into your Godot project.
 3. In Godot, go to **Project → Project Settings → Plugins** and enable **CGLF — Custom Global Light Function**.
 
 ## Usage
 1. Find the plugin's dock on Godot's right dock.
 2. Usage:
-   	- **Include File Path** → Path to your shared `.gdshaderinc` file containing the global `light()` function.
-	- **Open File Path** → Open the `.gdshaderinc` file to edit.
-	- **Copy File Path** → Copies the `.gdshaderinc` file path to clipboard.
+   	- **Create CLF** → To start create a CLF.
+	- **Edit** → Open the `.gdshaderinc` file to edit.
 	- **Copy Injection Code** → Copies include boiler plate to clipboard for manually addition.
-	- **Update Shaders** → Updates all shaders with CGLF's current settings.
-   	- **Ignore Blacklist** → Ignores the blacklist rule while updating shader files.
+	- **Inject Shaders** → Injects all shaders with CLF's current settings.
+	- **CLLF** → Converts the CLF into a CLLF, changing it to a Custom Local Light Function which affects only shaders whitelisted.
    	- **Replace Existing Light Functions** → Automatically replaces `light()` functions already present in shaders.
+	- **Shader Types** → List of shader types to be affected by the current CLF.
    	- **Blacklist** → List of shaders to exclude.
+	- **Whitelist** → List of shaders to be affected only by the current CLF.
 
 ## Planned Future Additions
 
