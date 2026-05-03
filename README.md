@@ -42,9 +42,3 @@ Provides a manager to define and customize a single centralized custom global li
 	- **Shader Types** → List of shader types to be affected by the current CLF.
    	- **Blacklist** → List of shaders to exclude.
 	- **Whitelist** → List of shaders to be affected only by the current CLF.
-
-## Planned Future Additions
-
-- Add support for in-scene saved Shaders
-- Add support to Materials
-- Add support to visual shaders
